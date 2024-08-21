@@ -1,25 +1,19 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  header {
+header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
     background-color: #461a0c;
+    height: 80px;
+    position: relative;
+    z-index: 5;
 }
+
 
 .logo img {
-    max-width: 200px;
+    width: 200px;
     height: auto;
     margin-left: 50px;
-}
-
-.logo img:hover{
-    cursor: pointer;
 }
 
 .logo {
