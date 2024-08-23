@@ -1,6 +1,8 @@
 document.getElementById("meu-botao").onclick = function() {
+    localStorage.setItem('isAuthenticated', 'false');
     window.location.href = "../html/home.html";
 };
+localStorage.setItem('isAuthenticated', 'false');
 
 async function loginUser(event) {
     event.preventDefault();
@@ -17,7 +19,10 @@ async function loginUser(event) {
 
     const data = await response.json();
     if (data.success) {
-        console.log('Login bem-sucedido');
+        // Armazena uma flag de autenticação no localStorage
+        localStorage.setItem('isAuthenticated', 'true');
+        // Redireciona para a página protegida
+        window.location.href = '../html/system/homeSystem.html';
 
     } else if (!data.success){
         alert("Usuário ou senha incorreto!")
