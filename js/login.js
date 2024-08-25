@@ -19,9 +19,7 @@ async function loginUser(event) {
 
     const data = await response.json();
     if (data.success) {
-        // Armazena uma flag de autenticação no localStorage
         localStorage.setItem('isAuthenticated', 'true');
-        // Redireciona para a página protegida
         window.location.href = '/pages/pagesSystem/homeSystem.html';
 
     } else if (!data.success){

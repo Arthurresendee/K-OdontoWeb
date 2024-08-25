@@ -20,30 +20,38 @@ header {
     flex-direction: column;
     align-items: center;
     height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 20px 0;
 }
 
 .logo img {
-    margin: 20px 0;
     height: auto;
     width: 180px;
 }
 
 .cabecalho {
     width: 100%;
+    flex-grow: 1;
 }
 
 nav ul {
     list-style: none;
     padding: 0;
     margin: 0;
+    width: 100%;
 }
 
 nav ul li {
     font-size: 20px;
-    width: 100%;
-}
-
-.container-nav-li {
     width: 100%;
 }
 
@@ -66,4 +74,6 @@ nav ul li button:hover {
 .content {
     flex-grow: 1;
     padding: 20px;
+    margin-left: 185px; /* Adicione esta linha para evitar que o conteúdo fique sob o cabeçalho fixo */
+    overflow-y: auto; /* Adicione esta linha para permitir a rolagem vertical */
 }

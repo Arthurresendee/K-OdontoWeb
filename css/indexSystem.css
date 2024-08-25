@@ -21,3 +21,8 @@
     background-color: #fab752;
     color: #773622;
 }
+
+body{
+  height: 100vh;
+  padding-left: 185px;
+}
