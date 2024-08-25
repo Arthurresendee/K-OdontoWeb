@@ -1,10 +1,10 @@
-class Cabecalho extends HTMLElement {
+class CabecalhoWeb extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: "open" });
 
-        // Carregar o HTML externo
-        fetch('/model.html')
+        // Carregar o HTML
+        fetch('/components/cabecalhoHorizontal/cabecalhoWeb.html')
             .then(response => response.text())
             .then(data => {
                 const template = document.createElement('template');
@@ -12,19 +12,14 @@ class Cabecalho extends HTMLElement {
 
                 const linkElem = document.createElement('link');
                 linkElem.setAttribute('rel', 'stylesheet');
-                linkElem.setAttribute('href', '/model.css');
-
-                const linkElem2 = document.createElement('link');
-                linkElem.setAttribute('rel', 'stylesheet');
-                linkElem.setAttribute('href', '/css/cabecalho.css');
+                linkElem.setAttribute('href', '/components/cabecalhoHorizontal/cabecalhoWeb.css');
 
                 this.shadowRoot.appendChild(linkElem);
-                this.shadowRoot.appendChild(linkElem);
-
                 this.shadowRoot.appendChild(template.content.cloneNode(true));
             })
             .catch(error => console.error('Erro ao carregar o HTML:', error));
     }
 }
 
-window.customElements.define('app-cabecalho-teste', Cabecalho);
+window.customElements.define('app-cabecalho-web', CabecalhoWeb);
+

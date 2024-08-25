@@ -1,6 +1,6 @@
 document.getElementById("meu-botao").onclick = function() {
     localStorage.setItem('isAuthenticated', 'false');
-    window.location.href = "../html/home.html";
+    window.location.href = "/pages/pagesWeb/home.html";
 };
 localStorage.setItem('isAuthenticated', 'false');
 
@@ -22,7 +22,7 @@ async function loginUser(event) {
         // Armazena uma flag de autenticação no localStorage
         localStorage.setItem('isAuthenticated', 'true');
         // Redireciona para a página protegida
-        window.location.href = '../html/system/homeSystem.html';
+        window.location.href = '/pages/pagesSystem/homeSystem.html';
 
     } else if (!data.success){
         alert("Usuário ou senha incorreto!")

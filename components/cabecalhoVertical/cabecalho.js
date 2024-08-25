@@ -3,7 +3,7 @@ class CabecalhoSystem extends HTMLElement {
         super();
         this.attachShadow({ mode: "open" });
 
-        fetch('/components/html/cabecalhoSystem-component.html')
+        fetch('/components/cabecalhoVertical/cabecalho.html')
             .then(response => response.text())
             .then(data => {
                 const template = document.createElement('template');
@@ -11,7 +11,7 @@ class CabecalhoSystem extends HTMLElement {
 
                 const linkElem = document.createElement('link');
                 linkElem.setAttribute('rel', 'stylesheet');
-                linkElem.setAttribute('href', '/components/css/cabecalhoSystem-component.css');
+                linkElem.setAttribute('href', '/components/cabecalhoVertical/cabecalho.css');
 
                 this.shadowRoot.appendChild(linkElem);
                 this.shadowRoot.appendChild(template.content.cloneNode(true));

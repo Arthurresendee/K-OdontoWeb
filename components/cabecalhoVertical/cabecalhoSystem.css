@@ -1,30 +1,16 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+}
+
 body {
     display: flex;
     height: 100vh;
     font-family: Arial, sans-serif;
-    background-color: #461a0c;
 }
 
-#botaoVoltarWeb {
-    position: fixed;
-    bottom: 10px; /* Altera de top para bottom */
-    left: 10px;
-    z-index: 1000;
-    padding: 10px 20px;
-    background-color: #bf7e1a;
-    color: #461a0c;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-
-#botaoVoltarWeb:hover {
-    background-color: #fab752;
-    color: #773622;
-}
-
-header{
+header {
     width: 185px;
     text-align: center;
     background-color: #461a0c;
@@ -33,16 +19,16 @@ header{
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 100vh;
 }
 
 .logo img {
     margin: 20px 0;
-
     height: auto;
     width: 180px;
 }
 
-.cabecalho{
+.cabecalho {
     width: 100%;
 }
 
@@ -57,7 +43,7 @@ nav ul li {
     width: 100%;
 }
 
-.container-nav-li{
+.container-nav-li {
     width: 100%;
 }
 
@@ -74,7 +60,7 @@ nav ul li button {
 nav ul li button:hover {
     font-size: 20px;
     cursor: pointer;
-    background-color:  #773622;
+    background-color: #773622;
 }
 
 .content {
