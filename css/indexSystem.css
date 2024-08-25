@@ -1,0 +1,23 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  #botaoVoltarWeb {
+    position: fixed;
+    bottom: 10px; /* Altera de top para bottom */
+    left: 10px;
+    z-index: 1000;
+    padding: 10px 20px;
+    background-color: #bf7e1a;
+    color: #461a0c;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#botaoVoltarWeb:hover {
+    background-color: #fab752;
+    color: #773622;
+}
