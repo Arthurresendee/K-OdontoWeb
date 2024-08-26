@@ -1,10 +1,10 @@
-class CabecalhoWeb extends HTMLElement {
+class CabecalhoSystemTag extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: "open" });
 
         // Carregar o HTML
-        fetch('/components/cabecalhoHorizontal/cabecalho.html')
+        fetch('/components/cabecalhoHorizontalSystem/cabecalhoWeb.html')
             .then(response => response.text())
             .then(data => {
                 const template = document.createElement('template');
@@ -12,7 +12,7 @@ class CabecalhoWeb extends HTMLElement {
 
                 const linkElem = document.createElement('link');
                 linkElem.setAttribute('rel', 'stylesheet');
-                linkElem.setAttribute('href', '/components/cabecalhoHorizontal/cabecalho.css');
+                linkElem.setAttribute('href', '/components/cabecalhoHorizontalSystem/cabecalhoWeb.css');
 
                 this.shadowRoot.appendChild(linkElem);
                 this.shadowRoot.appendChild(template.content.cloneNode(true));
@@ -21,5 +21,5 @@ class CabecalhoWeb extends HTMLElement {
     }
 }
 
-window.customElements.define('cabecalho-web', CabecalhoWeb);
+window.customElements.define('app-cabecalho-sytem-tag', CabecalhoSystemTag);
 
