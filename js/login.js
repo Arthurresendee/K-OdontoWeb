@@ -21,6 +21,7 @@ async function loginUser(event) {
     if (data.success) {
         localStorage.setItem('isAuthenticated', 'true');
         window.location.href = '/pages/pagesSystem/homeSystem.html';
+        localStorage.setItem('user', JSON.stringify(data.user));
 
     } else if (!data.success){
         alert("Usuário ou senha incorreto!")
