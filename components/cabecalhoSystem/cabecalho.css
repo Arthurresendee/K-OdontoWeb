@@ -1,0 +1,36 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10px;
+    background-color: #461a0c;
+    height: 50px;
+    position: relative;
+    z-index: 5;
+}
+
+.logo img {
+    width: 100px;
+    height: auto;
+    margin-left: 50px;
+}
+
+.logo {
+    flex: 1;
+}
+
+.cabecalho nav .nav-buttons button {
+    margin: 0 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fab752;
+    background: none;
+    border: none;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    cursor: pointer;
+}
+
+.cabecalho nav .nav-buttons button:hover {
+    color: #fab752;
+    text-decoration: overline;
+}

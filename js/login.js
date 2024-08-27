@@ -2,6 +2,7 @@ document.getElementById("meu-botao").onclick = function() {
     localStorage.setItem('isAuthenticated', 'false');
     window.location.href = "/pages/pagesWeb/home.html";
 };
+
 localStorage.setItem('isAuthenticated', 'false');
 
 async function loginUser(event) {

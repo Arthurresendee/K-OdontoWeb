@@ -24,7 +24,7 @@
 
 body{
   height: 100vh;
-  padding-left: 185px;
+  width: 100vw;
 }
 
 .cabecalhoUsuario{
