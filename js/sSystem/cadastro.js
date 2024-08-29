@@ -1,15 +1,23 @@
-function showForm(formId) {
+function showForm(formId, cardElement) {
     document.querySelectorAll('.form-section').forEach(section => {
         section.style.display = 'none';
     });
     document.getElementById(formId).style.display = 'block';
+
+    document.querySelectorAll('.card').forEach(card => {
+        card.classList.remove('active');
+    });
+
+    cardElement.classList.add('active');
+
 }
 
 function showInitialForm() {
-    showForm('cadastroPaciente'); // Substitua 'cadastroPaciente' pelo ID do formulário que você deseja exibir inicialmente
+    const initialCard = document.querySelector('.card');
+    showForm('cadastroPaciente', initialCard); 
 }
-window.onload = showInitialForm;
 
+window.onload = showInitialForm;
 //#region [Cadastro Endereco]
 function limpa_formulário_cep() {
     // Limpa valores do formulário de cep.

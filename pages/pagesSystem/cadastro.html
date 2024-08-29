@@ -9,15 +9,16 @@
 </head>
 <body>
     <app-cabecalho-system></app-cabecalho-system>
+    
     <section class="card-section">
         <div class="card-container">
-            <div class="card" onclick="showForm('cadastroPaciente')">
+            <div class="card" onclick="showForm('cadastroPaciente', this)">
                 <h2>Paciente</h2>
             </div>
-            <div class="card" onclick="showForm('cadastroDentista')">
+            <div class="card" onclick="showForm('cadastroDentista', this)">
                 <h2>Dentista</h2>
             </div>
-            <div class="card" onclick="showForm('cadastroEndereco')">
+            <div class="card" onclick="showForm('cadastroEndereco', this)">
                 <h2>Endereço</h2>
             </div>
         </div>
@@ -79,9 +80,6 @@
         </div>
     </section>
         
-        
-    <img src="/img/TelaDeCadastro.png" alt="">
-    <img src="/img/TelaDeCadastro.png" alt="">
     <script src="/components/cabecalhoSystem/cabecalho.js"></script>
     <script src="/js/sSystem/cadastro.js"></script>
 </body>

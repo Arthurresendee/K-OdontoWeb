@@ -6,12 +6,11 @@
 
 body{
     background-color: #fff;
-  } 
+} 
 
-  .card-section {
+.card-section {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     padding: 50px 30px;
-    background-color: #7a2121;
     margin-top: 60px;
 }
 .card-container {
@@ -34,24 +33,43 @@ body{
     transform: scale(1.04);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
+.card.active {
+    background-color: #ffffff;
+    color: #5271ff;
+    transform: scale(1.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
 .registration-section{
     padding: 40px 0;
     display: flex;
-    /* background-color: red; */
     justify-content: center;
-    /* height: 650px; */
 }
+
 .form-section {
+    position: relative;
     color: #5271ff;
-    display: none;
+    display: block;
     width: 600px;
     padding: 20px 5%;
-    border: 1px solid #3b5db2;
     border-radius: 8px;
-    background-color: #e0e7ff;
+    background-color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 1s;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+    z-index: 1; 
 }
+
+.form-section::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 10%;
+    right: 10%;
+    height: 10px; 
+    background: linear-gradient(to right, #5271ff, #3b5db2);
+    border-radius: 8px 8px 0 0; 
+    z-index: -1;
+}
+
 
 .form-section h2 {
     padding: 10px 0;
