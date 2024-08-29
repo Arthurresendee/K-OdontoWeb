@@ -9,7 +9,7 @@
 </head>
 <body>
     <app-cabecalho-system></app-cabecalho-system>
-    <div class="main-cadastro">
+    <section class="card-section">
         <div class="card-container">
             <div class="card" onclick="showForm('cadastroPaciente')">
                 <h2>Paciente</h2>
@@ -21,7 +21,9 @@
                 <h2>Endereço</h2>
             </div>
         </div>
+    </section>
     
+    <section class="registration-section">
         <div class="form-section" id="cadastroPaciente">
             <h2>Cadastro de Paciente</h2>
             <form>
@@ -56,27 +58,30 @@
     
         <div class="form-section" id="cadastroEndereco">
             <h2>Cadastro de Endereço</h2>
-            <form method="get" action=".">
+            <form method="post" action="." id="cadastro-endereco-form">
                 <label for="CEPEndereco">CEP:</label>
-                <input type="text" id="CEPEndereco" name="CEPEndereco" onblur="pesquisacep(this.value);" required/>
+                <input type="text" id="CEPEndereco" name="CEPEndereco" onblur="pesquisacep(this.value);"/>
 
                 <label for="ruaEndereco">Rua:</label>
-                <input type="text" id="ruaEndereco" name="ruaEndereco" required>
+                <input type="text" id="ruaEndereco" name="ruaEndereco">
 
                 <label for="bairroEndereco">Bairro:</label>
-                <input type="text" id="bairroEndereco" name="bairroEndereco" required>
+                <input type="text" id="bairroEndereco" name="bairroEndereco">
                 
                 <label for="cidadeEndereco">Cidade:</label>
-                <input type="text" id="cidadeEndereco" name="cidadeEndereco" required>
+                <input type="text" id="cidadeEndereco" name="cidadeEndereco">
     
                 <label for="estadoEndereco">Estado:</label>
-                <input type="text" id="estadoEndereco" name="estadoEndereco" required>
+                <input type="text" id="estadoEndereco" name="estadoEndereco">
     
                 <button class="" type="submit" id="button-cadastrarEndereco">Cadastrar Endereço</button>
             </form>
         </div>
-    </div>
-
+    </section>
+        
+        
+    <img src="/img/TelaDeCadastro.png" alt="">
+    <img src="/img/TelaDeCadastro.png" alt="">
     <script src="/components/cabecalhoSystem/cabecalho.js"></script>
     <script src="/js/sSystem/cadastro.js"></script>
 </body>

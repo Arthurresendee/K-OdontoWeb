@@ -3,11 +3,15 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 5px 10px;
-    background-color: #461a0c;
+    background: linear-gradient(90deg, rgba(82,113,255,1) 20%,rgba(82, 125, 173, 0)60%, rgba(255,255,255,0) 100%);
+    background-color: #ffffff;
     height: 50px;
-    position: relative;
-    z-index: 5;
+    position: fixed; /* Adicione esta linha */
+    top: 0; /* Adicione esta linha para garantir que o cabeçalho fique no topo */
+    width: 100%; /* Adicione esta linha para garantir que o cabeçalho ocupe toda a largura da página */
+    z-index: 1000;
 }
+
 
 .logo img {
     width: 100px;
@@ -23,14 +27,14 @@ header {
     margin: 0 10px;
     font-size: 18px;
     font-weight: bold;
-    color: #fab752;
+    color: #5271ff;
     background: none;
     border: none;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     cursor: pointer;
+    text-transform: uppercase;
 }
 
 .cabecalho nav .nav-buttons button:hover {
-    color: #fab752;
     text-decoration: overline;
 }

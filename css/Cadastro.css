@@ -1,68 +1,96 @@
-.main-cadastro {
-    font-family: Arial, sans-serif;
-    margin: 20px 60px;
-    padding: 30px 0;
+/* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  } */
+
+body{
+    background-color: #fff;
+  } 
+
+  .card-section {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 50px 30px;
+    background-color: #7a2121;
+    margin-top: 60px;
 }
 .card-container {
     display: flex;
     justify-content: space-around;
-    margin-bottom: 20px;
+    padding: 20px 0;
 }
 .card {
-    color: #5c4033;
-    background-color: #d2b48c;
-    border: 1px solid #a0522d;
+    color: #ffffff;
+    background-color: #5271ff;
+    border: 1px solid #3b5db2;
     border-radius: 8px;
     padding: 20px;
     width: 30%;
     text-align: center;
     cursor: pointer;
-    transition: transform 0.2s;
+    transition: transform 0.1s, box-shadow 0.1s;
 }
 .card:hover {
     transform: scale(1.04);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+.registration-section{
+    padding: 40px 0;
+    display: flex;
+    /* background-color: red; */
+    justify-content: center;
+    /* height: 650px; */
 }
 .form-section {
-    color: #5c4033;
+    color: #5271ff;
     display: none;
-    margin: 60px auto;
-    width: 40%;
+    width: 600px;
     padding: 20px 5%;
-    border: 1px solid #8b4513;
+    border: 1px solid #3b5db2;
     border-radius: 8px;
-    background-color: #f5f5dc;
-    transition: transform 0.1s;
+    background-color: #e0e7ff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 1s;
 }
-.form-section:hover {
-    transform: scale(1.04);
-}
+
 .form-section h2 {
     padding: 10px 0;
     text-align: center;
 }
+
 label {
     display: block;
     margin-top: 20px;
+    color: #5271ff;
 }
+
 input, select {
     width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    background-color: #f5f5dc;
-    border: 1px solid #8b4513;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #ffffff;
+    border: 1px solid #3b5db2;
+    border-radius: 5px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 input:focus, select:focus {
     outline: none;
-    border: 1px solid #8b4513;
+    border: 2px solid #5271ff;
+    box-shadow: 0 0 8px rgba(82, 113, 255, 0.5);
 }
+
 button {
     margin-top: 20px;
     padding: 10px 20px;
-    background-color: #8b4513;
+    background-color: #5271ff;
     color: white;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
 }
 button:hover {
-    background-color: #a0522d;
+    background-color: #3b5db2;
+    transform: scale(1.05);
 }

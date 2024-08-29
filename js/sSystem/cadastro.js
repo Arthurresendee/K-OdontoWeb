@@ -5,6 +5,12 @@ function showForm(formId) {
     document.getElementById(formId).style.display = 'block';
 }
 
+function showInitialForm() {
+    showForm('cadastroPaciente'); // Substitua 'cadastroPaciente' pelo ID do formulário que você deseja exibir inicialmente
+}
+window.onload = showInitialForm;
+
+//#region [Cadastro Endereco]
 function limpa_formulário_cep() {
     // Limpa valores do formulário de cep.
     document.getElementById('ruaEndereco').value = ("");
@@ -26,6 +32,7 @@ function meu_callback(conteudo) {
         alert("CEP não encontrado.");
     }
 }
+
 
 function pesquisacep(valor) {
     // Nova variável "cep" somente com dígitos.
@@ -58,3 +65,43 @@ function pesquisacep(valor) {
         limpa_formulário_cep();
     }
 }
+
+document.getElementById('cadastro-endereco-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const cep = document.getElementById('CEPEndereco').value;
+    const rua = document.getElementById('ruaEndereco').value;
+    const bairro = document.getElementById('bairroEndereco').value;
+    const cidade = document.getElementById('cidadeEndereco').value;
+    const estado = document.getElementById('estadoEndereco').value;
+
+    const endereco = {
+        cep: cep,
+        rua: rua,
+        bairro: bairro,
+        cidade: cidade,
+        estado: estado
+    }
+
+    fetch('https://localhost:7237/api/Endereco', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(endereco)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Erro na requisição: ${response.status}`);
+        }
+        console.log("teste ", endereco)
+        return response.json();
+    })
+    .then(data => {
+        console.log('Dados enviados com sucesso:', endereco); })
+    .catch(error => {
+        console.error('Erro:', endereco);
+    });
+})
+//#endregion
+
+

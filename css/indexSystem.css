@@ -10,23 +10,24 @@
     left: 10px;
     z-index: 1000;
     padding: 10px 20px;
-    background-color: #bf7e1a;
-    color: #461a0c;
+    background-color: rgb(82,113,255);
+    color: #ffffff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
 #botaoVoltarWeb:hover {
-    background-color: #fab752;
-    color: #a07062;
+    background-color: #cfd2f0;
+    color: rgb(82,113,255);
+    border: 1px solid rgb(82,113,255);
 }
 
 body{
   height: 100vh;
   width: 100vw;
 }
-
+/* 
 .cabecalhoUsuario{
   width: 100%;
   height: 70px;
@@ -52,4 +53,4 @@ body{
 .name-username span {
   font-size: 1.2em;
   color: #333;
-}
+} */
