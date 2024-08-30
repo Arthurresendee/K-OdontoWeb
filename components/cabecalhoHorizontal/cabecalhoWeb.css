@@ -2,16 +2,19 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
-    background-color: #461a0c;
-    height: 80px;
-    position: relative;
-    z-index: 5;
+    padding: 5px 10px;
+    background: linear-gradient(90deg, rgba(82,113,255,1) 20%,rgba(82, 125, 173, 0)60%, rgba(255,255,255,0) 100%);
+    background-color: #ffffff;
+    height: 50px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
 }
 
 
 .logo img {
-    width: 200px;
+    width: 100px;
     height: auto;
     margin-left: 50px;
 }
@@ -20,27 +23,22 @@ header {
     flex: 1;
 }
 
-.cabecalho nav ul {
-    display: flex;
-    list-style: none;
-    margin: 0 50px 0 0;
-    padding: 0;
-}
-
-.cabecalho nav ul li {
-    margin: 0 20px 0;
-    font-size: 25px;
-}
-
-.cabecalho nav ul li a {
-    text-decoration: none;
+.cabecalho nav .nav-buttons button {
+    margin: 0 10px;
+    font-size: 18px;
     font-weight: bold;
-    color: #fab752;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+    color: #5271ff;
+    background: none;
+    border: none;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    cursor: pointer;
+    text-transform: uppercase;
 }
 
-.cabecalho nav ul li a:hover{
-    cursor:pointer;
-    color: #fab752;
-    text-decoration-line:overline
+.cabecalho nav .nav-buttons button:hover {
+    text-decoration: overline;
+}
+
+.adm-button{
+    padding-right: 50px;
 }

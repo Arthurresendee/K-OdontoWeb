@@ -6,9 +6,9 @@ header {
     background: linear-gradient(90deg, rgba(82,113,255,1) 20%,rgba(82, 125, 173, 0)60%, rgba(255,255,255,0) 100%);
     background-color: #ffffff;
     height: 50px;
-    position: fixed; /* Adicione esta linha */
-    top: 0; /* Adicione esta linha para garantir que o cabeçalho fique no topo */
-    width: 100%; /* Adicione esta linha para garantir que o cabeçalho ocupe toda a largura da página */
+    position: fixed;
+    top: 0;
+    width: 100%;
     z-index: 1000;
 }
 

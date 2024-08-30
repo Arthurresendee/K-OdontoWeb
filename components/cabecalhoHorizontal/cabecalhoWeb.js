@@ -16,6 +16,27 @@ class CabecalhoWeb extends HTMLElement {
 
                 this.shadowRoot.appendChild(linkElem);
                 this.shadowRoot.appendChild(template.content.cloneNode(true));
+
+                this.shadowRoot.getElementById("botao-nav-home").onclick = function() {
+                    window.location.href = "/pages/pagesWeb/home.html";
+                };
+
+                this.shadowRoot.getElementById("botao-nav-servicos").onclick = function() {
+                    window.location.href = "/pages/pagesWeb/servicos.html";
+                };
+
+                this.shadowRoot.getElementById("botao-nav-contato").onclick = function() {
+                    window.location.href = "/pages/pagesWeb/contato.html";
+                };
+
+                this.shadowRoot.getElementById("botao-nav-Sobre").onclick = function() {
+                    window.location.href = "/pages/pagesWeb/sobre.html";
+                };
+
+                this.shadowRoot.getElementById("botao-nav-ADM").onclick = function() {
+                    window.location.href = "/components/login/login.html";
+                };
+
             })
             .catch(error => console.error('Erro ao carregar o HTML:', error));
     }
