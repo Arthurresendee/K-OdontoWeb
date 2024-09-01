@@ -16,12 +16,48 @@ function showInitialForm() {
     const initialCard = document.querySelector('.card');
     showForm('cadastroPaciente', initialCard); 
 }
-
 window.onload = showInitialForm;
+
+//#region  [Cadastro Dentista]
+
+///// Aqui será buscado do banco todos os enderecos disponíveis para associar a um Dentista /////
+// const id = [];
+document.addEventListener("DOMContentLoaded", function() {
+    const selectElement = document.getElementById("endereco-select");
+    let enderecosCarregados = false;
+
+    selectElement.addEventListener("click", function() {
+        // Verifica se os endereços já foram carregados
+        if (enderecosCarregados) return;
+
+        fetch("https://localhost:7237/api/Endereco")
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(endereco => {
+                    const option = document.createElement("option");
+                    option.value = endereco.id;
+                    // id.push(endereco.id)
+                    option.textContent = endereco.descricao;
+                    selectElement.appendChild(option);
+                });
+                enderecosCarregados = true;
+            })
+            .catch(error => {
+                console.error("Erro ao carregar os endereços:", error);
+            });
+    });
+});
+// console.log(id)
+
+//#endregion
+
+
+
 //#region [Cadastro Endereco]
 function limpa_formulário_cep() {
     // Limpa valores do formulário de cep.
     document.getElementById('ruaEndereco').value = ("");
+    document.getElementById('numeroEndereco').value = ("");
     document.getElementById('bairroEndereco').value = ("");
     document.getElementById('cidadeEndereco').value = ("");
     document.getElementById('estadoEndereco').value = ("");
@@ -78,6 +114,7 @@ document.getElementById('cadastro-endereco-form').addEventListener('submit', fun
     event.preventDefault();
     const cep = document.getElementById('CEPEndereco').value;
     const rua = document.getElementById('ruaEndereco').value;
+    const numero = document.getElementById('numeroEndereco').value;
     const bairro = document.getElementById('bairroEndereco').value;
     const cidade = document.getElementById('cidadeEndereco').value;
     const estado = document.getElementById('estadoEndereco').value;
@@ -85,6 +122,7 @@ document.getElementById('cadastro-endereco-form').addEventListener('submit', fun
     const endereco = {
         cep: cep,
         rua: rua,
+        numero: numero,
         bairro: bairro,
         cidade: cidade,
         estado: estado
