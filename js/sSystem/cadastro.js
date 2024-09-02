@@ -48,14 +48,13 @@ document.addEventListener("DOMContentLoaded", function() {
 function limpa_formulario_dentista() {
     // Limpa valores do formulário de cep.
     document.getElementById('nomeDentista').value = ("");
-    document.getElementById('DataDeAniversarioDentista').value = ("");
+    document.getElementById('dataDeNascimento').value = ("");
     document.getElementById('sobreNomeDentista').value = ("");
     document.getElementById('CPFDentista').value = ("");
-    document.getElementById('EmailDentista').value = ("");
-    document.getElementById('NumeroDeTelefoneDentista').value = ("");
-    document.getElementById('EspecializacaoDentista').value = ("");
+    document.getElementById('emailDentista').value = ("");
+    document.getElementById('numeroDeTelefoneDentista').value = ("");
+    document.getElementById('especializacaoDentista').value = ("");
     document.getElementById('numeroDeRegistro').value = ("");
-    document.getElementById('especialidadeDentista').value = ("");
     document.getElementById('endereco-select').value = ("");
 }
 
@@ -81,7 +80,7 @@ document.getElementById('cadastro-dentista-form').addEventListener('submit', fun
         especializacao: especializacao,
         numeroDeRegistro: numeroDeRegistro,
         idEndereco: idEndereco
-    }
+    };
 
     fetch('https://localhost:7237/api/Dentista', {
         method: 'POST',
@@ -94,17 +93,17 @@ document.getElementById('cadastro-dentista-form').addEventListener('submit', fun
         if (!response.ok) {
             throw new Error(`Erro na requisição: ${response.status}`);
         }
-        console.log("teste ", dentista)
         return response.json();
     })
     .then(data => {
-        console.log('Dados enviados com sucesso:', dentista); 
+        console.log('Dados enviados com sucesso:', data);
         limpa_formulario_dentista();
     })
     .catch(error => {
-        console.error('Erro:', dentista);
+        console.error('Erro:', error);
     });
-})
+});
+
 
 //#endregion
 
