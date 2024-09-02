@@ -19,7 +19,6 @@ function showInitialForm() {
 window.onload = showInitialForm;
 
 //#region  [Cadastro Dentista]
-
 ///// Aqui será buscado do banco todos os enderecos disponíveis para associar a um Dentista /////
 document.addEventListener("DOMContentLoaded", function() {
     const selectElement = document.getElementById("endereco-select");
@@ -45,6 +44,67 @@ document.addEventListener("DOMContentLoaded", function() {
             });
     });
 });
+
+function limpa_formulario_dentista() {
+    // Limpa valores do formulário de cep.
+    document.getElementById('nomeDentista').value = ("");
+    document.getElementById('DataDeAniversarioDentista').value = ("");
+    document.getElementById('sobreNomeDentista').value = ("");
+    document.getElementById('CPFDentista').value = ("");
+    document.getElementById('EmailDentista').value = ("");
+    document.getElementById('NumeroDeTelefoneDentista').value = ("");
+    document.getElementById('EspecializacaoDentista').value = ("");
+    document.getElementById('numeroDeRegistro').value = ("");
+    document.getElementById('especialidadeDentista').value = ("");
+    document.getElementById('endereco-select').value = ("");
+}
+
+document.getElementById('cadastro-dentista-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const nome = document.getElementById('nomeDentista').value;
+    const dataDeNascimento = document.getElementById('dataDeNascimento').value;
+    const sobreNome = document.getElementById('sobreNomeDentista').value;
+    const cpf = document.getElementById('CPFDentista').value;
+    const email = document.getElementById('emailDentista').value;
+    const numeroDeTelefone = document.getElementById('numeroDeTelefoneDentista').value;
+    const especializacao = document.getElementById('especializacaoDentista').value;
+    const numeroDeRegistro = document.getElementById('numeroDeRegistro').value;
+    const idEndereco = document.getElementById('endereco-select').value;
+
+    const dentista = {
+        nome: nome,
+        dataDeNascimento: dataDeNascimento,
+        sobreNome: sobreNome,
+        cpf: cpf,
+        email: email,
+        numeroDeTelefone: numeroDeTelefone,
+        especializacao: especializacao,
+        numeroDeRegistro: numeroDeRegistro,
+        idEndereco: idEndereco
+    }
+
+    fetch('https://localhost:7237/api/Dentista', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(dentista)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Erro na requisição: ${response.status}`);
+        }
+        console.log("teste ", dentista)
+        return response.json();
+    })
+    .then(data => {
+        console.log('Dados enviados com sucesso:', dentista); 
+        limpa_formulario_dentista();
+    })
+    .catch(error => {
+        console.error('Erro:', dentista);
+    });
+})
 
 //#endregion
 
