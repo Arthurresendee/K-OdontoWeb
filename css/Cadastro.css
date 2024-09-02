@@ -26,7 +26,7 @@ body{
     border: 1px solid #546eaf;
     border-radius: 8px;
     padding: 20px;
-    width: 30%;
+    width: 250px;
     text-align: center;
     cursor: pointer;
     transition: transform 0.1s, box-shadow 0.1s;
@@ -55,7 +55,7 @@ body{
     color: #5271ff;
     display: block;
     width: 600px;
-    padding: 20px 5%;
+    padding: 10px 20px;
     border-radius: 8px;
     background-color: #ffffff;
     box-shadow: 0 10px 15px 10px rgba(0, 0, 0, 0.1);
@@ -84,6 +84,20 @@ label {
     display: block;
     margin-top: 20px;
     color: #5271ff;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-group {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.form-group:last-child {
+    margin-right: 0;
 }
 
 input, select {

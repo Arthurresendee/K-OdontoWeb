@@ -21,7 +21,6 @@ window.onload = showInitialForm;
 //#region  [Cadastro Dentista]
 
 ///// Aqui será buscado do banco todos os enderecos disponíveis para associar a um Dentista /////
-// const id = [];
 document.addEventListener("DOMContentLoaded", function() {
     const selectElement = document.getElementById("endereco-select");
     let enderecosCarregados = false;
@@ -36,7 +35,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 data.forEach(endereco => {
                     const option = document.createElement("option");
                     option.value = endereco.id;
-                    // id.push(endereco.id)
                     option.textContent = endereco.descricao;
                     selectElement.appendChild(option);
                 });
@@ -47,7 +45,6 @@ document.addEventListener("DOMContentLoaded", function() {
             });
     });
 });
-// console.log(id)
 
 //#endregion
 

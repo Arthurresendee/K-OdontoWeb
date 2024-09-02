@@ -28,55 +28,82 @@
         <div class="form-section" id="cadastroPaciente">
             <h2>CADASTRAR</h2>
             <form>
-                <label for="nomePaciente">Nome:</label>
-                <input type="text" id="nomePaciente" name="nomePaciente" required>
-    
-                <label for="cpfPaciente">CPF:</label>
-                <input type="text" id="cpfPaciente" name="cpfPaciente" required>
-    
-                <label for="dataNascimentoPaciente">Data de Nascimento:</label>
-                <input type="date" id="dataNascimentoPaciente" name="dataNascimentoPaciente" required>
-    
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nomePaciente">Nome:</label>
+                        <input type="text" id="nomePaciente" name="nomePaciente" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cpfPaciente">CPF:</label>
+                        <input type="text" id="cpfPaciente" name="cpfPaciente" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="dataNascimentoPaciente">Data de Nascimento:</label>
+                        <input type="date" id="dataNascimentoPaciente" name="dataNascimentoPaciente" required>
+                    </div>
+                </div>
                 <button type="submit">Cadastrar Paciente</button>
             </form>
         </div>
     
         <div class="form-section" id="cadastroDentista">
             <h2>CADASTRAR</h2>
-            <form>
-                <label for="nomeDentista">Nome:</label>
-                <input type="text" id="nomeDentista" name="nomeDentista" required>
-                
-                <label for="DataDeAniversarioDentista"> Data de Nascimento:</label>
-                <input type="date" id="DataDeAniversarioDentista" name="DataDeAniversarioDentista" required>
-
-                <label for="sobreNomeDentista">Sobrenome:</label>
-                <input type="text" id="sobreNomeDentista" name="sobreNomeDentista" required>
-
-                <label for="CPFDentista">CPF:</label>
-                <input type="text" id="CPFDentista" name="CPFDentista" required>
-
-                <label for="EmailDentista">Email:</label>
-                <input type="text" id="EmailDentista" name="EmailDentista" required>
-
-                <label for="NumeroDeTelefoneDentista">Numero De Telefone:</label>
-                <input type="text" id="NumeroDeTelefoneDentista" name="NumeroDeTelefoneDentista" required>
-                
-                <label for="EspecializacaoDentista">Especialização:</label>
-                <input type="text" id="EspecializacaoDentista" name="EspecializacaoDentista" required>
-
-                <label for="croDentista">CRO:</label>
-                <input type="text" id="croDentista" name="croDentista" required>
-    
-                <label for="especialidadeDentista">Especialidade:</label>
-                <input type="text" id="especialidadeDentista" name="especialidadeDentista" required>
-
-                <!-- Esse campo de Endereço seria o mesmo que escolher o Id do Endereco -->
-                <label for="endereco-select">Endereço:</label>
-                <select id="endereco-select" name="endereco">
-                    <option value="">Selecione um Endereço</option>
-                </select>
-
+            <form method="post" action="." id="cadastro-dentista-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nomeDentista">Nome:</label>
+                        <input type="text" id="nomeDentista" name="nomeDentista" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="DataDeAniversarioDentista"> Data de Nascimento:</label>
+                        <input type="date" id="DataDeAniversarioDentista" name="DataDeAniversarioDentista" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="sobreNomeDentista">Sobrenome:</label>
+                        <input type="text" id="sobreNomeDentista" name="sobreNomeDentista" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="CPFDentista">CPF:</label>
+                        <input type="text" id="CPFDentista" name="CPFDentista" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="EmailDentista">Email:</label>
+                        <input type="text" id="EmailDentista" name="EmailDentista" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="NumeroDeTelefoneDentista">Celular:</label>
+                        <input type="tel" id="NumeroDeTelefoneDentista" name="NumeroDeTelefoneDentista" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="EspecializacaoDentista">Especialização:</label>
+                        <input type="text" id="EspecializacaoDentista" name="EspecializacaoDentista" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="croDentista">CRO:</label>
+                        <input type="text" id="croDentista" name="croDentista" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="especialidadeDentista">Especialidade:</label>
+                        <input type="text" id="especialidadeDentista" name="especialidadeDentista" required>
+                    </div>
+                    <div class="form-group">
+                        <!-- Esse campo de Endereço seria o mesmo que escolher o Id do Endereco -->
+                        <label for="endereco-select">Endereço:</label>
+                        <select id="endereco-select" name="endereco">
+                            <option value="">Selecione um Endereço</option>
+                        </select>
+                    </div>
+                </div>
                 <button type="submit">Cadastrar Dentista</button>
             </form>
         </div>
@@ -84,24 +111,36 @@
         <div class="form-section" id="cadastroEndereco">
             <h2>CADASTRAR</h2>
             <form method="post" action="." id="cadastro-endereco-form">
-                <label for="CEPEndereco">CEP:</label>
-                <input type="text" id="CEPEndereco" name="CEPEndereco" onblur="pesquisacep(this.value);"/>
-
-                <label for="ruaEndereco">Rua:</label>
-                <input type="text" id="ruaEndereco" name="ruaEndereco">
-
-                <label for="numeroEndereco">Numero:</label>
-                <input type="text" id="numeroEndereco" name="numeroEndereco">
-
-                <label for="bairroEndereco">Bairro:</label>
-                <input type="text" id="bairroEndereco" name="bairroEndereco">
-                
-                <label for="cidadeEndereco">Cidade:</label>
-                <input type="text" id="cidadeEndereco" name="cidadeEndereco">
-    
-                <label for="estadoEndereco">Estado:</label>
-                <input type="text" id="estadoEndereco" name="estadoEndereco">
-    
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="CEPEndereco">CEP:</label>
+                        <input type="text" id="CEPEndereco" name="CEPEndereco" onblur="pesquisacep(this.value); required"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="ruaEndereco">Rua:</label>
+                        <input type="text" id="ruaEndereco" name="ruaEndereco">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="numeroEndereco">Numero:</label>
+                        <input type="text" id="numeroEndereco" name="numeroEndereco">
+                    </div>
+                    <div class="form-group">
+                        <label for="bairroEndereco">Bairro:</label>
+                        <input type="text" id="bairroEndereco" name="bairroEndereco">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="cidadeEndereco">Cidade:</label>
+                        <input type="text" id="cidadeEndereco" name="cidadeEndereco">
+                    </div>
+                    <div class="form-group">
+                        <label for="estadoEndereco">Estado:</label>
+                        <input type="text" id="estadoEndereco" name="estadoEndereco">
+                    </div>
+                </div>
                 <button class="" type="submit" id="button-cadastrarEndereco">Cadastrar Endereço</button>
             </form>
         </div>
