@@ -168,6 +168,7 @@ function pesquisacep(valor) {
 
 document.getElementById('cadastro-endereco-form').addEventListener('submit', function(event) {
     event.preventDefault();
+
     const cep = document.getElementById('CEPEndereco').value;
     const rua = document.getElementById('ruaEndereco').value;
     const numero = document.getElementById('numeroEndereco').value;
@@ -182,7 +183,7 @@ document.getElementById('cadastro-endereco-form').addEventListener('submit', fun
         bairro: bairro,
         cidade: cidade,
         estado: estado
-    }
+    };
 
     fetch('https://localhost:7237/api/Endereco', {
         method: 'POST',
@@ -192,18 +193,26 @@ document.getElementById('cadastro-endereco-form').addEventListener('submit', fun
         body: JSON.stringify(endereco)
     })
     .then(response => {
-        if (!response.ok) {
-            throw new Error(`Erro na requisição: ${response.status}`);
-        }
-        console.log("teste ", endereco)
-        return response.json();
+        return response.json().then(data => {
+            if (!response.ok) {
+                // Se a resposta não for OK (código de status HTTP >= 400), 
+                // lançar um erro com as mensagens de erro retornadas pela API.
+                const error = new Error('Erro na requisição');
+                error.data = data;
+                throw error;
+            }
+            return data;
+        });
     })
     .then(data => {
-        console.log('Dados enviados com sucesso:', endereco); })
+        console.log('Dados enviados com sucesso:', data);
+    })
     .catch(error => {
-        console.error('Erro:', endereco);
+        // Aqui tratamos o erro e exibimos as mensagens de erro da API
+        console.error('Erro:', error.data.errors || error.message);
     });
-})
+});
+
 //#endregion
 
 
