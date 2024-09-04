@@ -129,7 +129,7 @@ function meu_callback(conteudo) {
     } else {
         // CEP não Encontrado.
         limpa_formulário_cep();
-        alert("CEP não encontrado.");
+        document.getElementById('cep-error').textContent = 'O CEP informado não é válido';
     }
 }
 
@@ -154,11 +154,12 @@ function pesquisacep(valor) {
 
             // Insere script no documento e carrega o conteúdo.
             document.body.appendChild(script);
-
+            document.getElementById('cep-error').textContent = '';
+            // document.getElementById('CEPEndereco').style.border = ' border: 1px solid #5271ff;';
         } else {
             // cep é inválido.
             limpa_formulário_cep();
-            alert("Formato de CEP inválido.");
+            document.getElementById('cep-error').textContent = 'Formato de CEP inválido.';
         }
     } else {
         // cep sem valor, limpa formulário.
@@ -168,6 +169,11 @@ function pesquisacep(valor) {
 
 document.getElementById('cadastro-endereco-form').addEventListener('submit', function(event) {
     event.preventDefault();
+
+    // Limpar mensagens de erro anteriores
+    document.querySelectorAll('.error-message').forEach(function(span) {
+        span.textContent = '';
+    });
 
     const cep = document.getElementById('CEPEndereco').value;
     const rua = document.getElementById('ruaEndereco').value;
@@ -195,8 +201,6 @@ document.getElementById('cadastro-endereco-form').addEventListener('submit', fun
     .then(response => {
         return response.json().then(data => {
             if (!response.ok) {
-                // Se a resposta não for OK (código de status HTTP >= 400), 
-                // lançar um erro com as mensagens de erro retornadas pela API.
                 const error = new Error('Erro na requisição');
                 error.data = data;
                 throw error;
@@ -206,12 +210,42 @@ document.getElementById('cadastro-endereco-form').addEventListener('submit', fun
     })
     .then(data => {
         console.log('Dados enviados com sucesso:', data);
+        // Limpar mensagens de erro após sucesso (opcional)
+        document.querySelectorAll('.error-message').forEach(function(span) {
+            span.textContent = '';
+        });
     })
     .catch(error => {
-        // Aqui tratamos o erro e exibimos as mensagens de erro da API
-        console.error('Erro:', error.data.errors || error.message);
+        if (error.data && error.data.errors) {
+            error.data.errors.forEach(err => {
+                // Exibir erro abaixo do campo correspondente
+                if (err.includes('CEP')) {
+                    document.getElementById('CEPEndereco').style.borderColor = 'red';
+                    document.getElementById('numeroEndereco').style.borderColor = 'red';
+                    document.getElementById('cep-error').textContent = err;
+                } else if (err.includes('Rua')) {
+                    document.getElementById('ruaEndereco').style.borderColor = 'red';
+                    document.getElementById('rua-error').textContent = err;
+                } else if (err.includes('Número')) {
+                    document.getElementById('numeroEndereco').style.borderColor = 'red';
+                    document.getElementById('numero-error').textContent = err;
+                } else if (err.includes('Bairro')) {
+                    document.getElementById('bairroEndereco').style.borderColor = 'red';
+                    document.getElementById('bairro-error').textContent = err;
+                } else if (err.includes('Cidade')) {
+                    document.getElementById('cidadeEndereco').style.borderColor = 'red';
+                    document.getElementById('cidade-error').textContent = err;
+                } else if (err.includes('Estado')) {
+                    document.getElementById('estadoEndereco').style.borderColor = 'red';
+                    document.getElementById('estado-error').textContent = err;
+                }
+            });
+        } else {
+            console.error('Erro:', error.message);
+        }
     });
 });
+
 
 //#endregion
 

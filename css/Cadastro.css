@@ -94,10 +94,21 @@ label {
 .form-group {
     flex: 1;
     margin-right: 20px;
+    position: relative;
 }
 
 .form-group:last-child {
     margin-right: 0;
+}
+
+.error-message {
+    color: red;
+    position: absolute; /* Faz a mensagem flutuar */
+    top: 100%; /* Posiciona a mensagem logo abaixo do campo */
+    left: 0;
+    width: 100%;
+    font-size: 12px;
+    margin-top: 2px; /* Espaço entre o campo e a mensagem */
 }
 
 input, select {

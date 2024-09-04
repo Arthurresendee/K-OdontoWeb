@@ -114,36 +114,44 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label for="CEPEndereco">CEP:</label>
-                        <input type="text" id="CEPEndereco" name="CEPEndereco" onblur="pesquisacep(this.value); required"/>
+                        <input type="text" id="CEPEndereco" name="CEPEndereco" onblur="pesquisacep(this.value);" required />
+                        <span class="error-message" id="cep-error" style="color: red;"></span>
                     </div>
                     <div class="form-group">
                         <label for="ruaEndereco">Rua:</label>
-                        <input type="text" id="ruaEndereco" name="ruaEndereco">
+                        <input type="text" id="ruaEndereco" name="ruaEndereco" required />
+                        <span class="error-message" id="rua-error" style="color: red;"></span>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="numeroEndereco">Numero:</label>
-                        <input type="text" id="numeroEndereco" name="numeroEndereco">
+                        <label for="numeroEndereco">Número:</label>
+                        <input type="text" id="numeroEndereco" name="numeroEndereco" required />
+                        <span class="error-message" id="numero-error" style="color: red;"></span>
                     </div>
                     <div class="form-group">
                         <label for="bairroEndereco">Bairro:</label>
-                        <input type="text" id="bairroEndereco" name="bairroEndereco">
+                        <input type="text" id="bairroEndereco" name="bairroEndereco" required />
+                        <span class="error-message" id="bairro-error" style="color: red;"></span>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
                         <label for="cidadeEndereco">Cidade:</label>
-                        <input type="text" id="cidadeEndereco" name="cidadeEndereco">
+                        <input type="text" id="cidadeEndereco" name="cidadeEndereco" required />
+                        <span class="error-message" id="cidade-error" style="color: red;"></span>
                     </div>
                     <div class="form-group">
                         <label for="estadoEndereco">Estado:</label>
-                        <input type="text" id="estadoEndereco" name="estadoEndereco">
+                        <input type="text" id="estadoEndereco" name="estadoEndereco" required />
+                        <span class="error-message" id="estado-error" style="color: red;"></span>
                     </div>
                 </div>
-                <button class="" type="submit" id="button-cadastrarEndereco">Cadastrar Endereço</button>
+                <button type="submit" id="button-cadastrarEndereco">Cadastrar Endereço</button>
             </form>
         </div>
+        
+        
     </section>
         
     <script src="/components/cabecalhoSystem/cabecalho.js"></script>
