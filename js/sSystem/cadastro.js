@@ -112,6 +112,7 @@ document.getElementById('cadastro-dentista-form').addEventListener('submit', fun
 //#region [Cadastro Endereco]
 function limpa_formulário_cep() {
     // Limpa valores do formulário de cep.
+    document.getElementById('CEPEndereco').value = ("");
     document.getElementById('ruaEndereco').value = ("");
     document.getElementById('numeroEndereco').value = ("");
     document.getElementById('bairroEndereco').value = ("");
@@ -169,7 +170,6 @@ function pesquisacep(valor) {
 
 document.getElementById('cadastro-endereco-form').addEventListener('submit', function(event) {
     event.preventDefault();
-
     // Limpar mensagens de erro anteriores
     document.querySelectorAll('.error-message').forEach(function(span) {
         span.textContent = '';
@@ -210,6 +210,22 @@ document.getElementById('cadastro-endereco-form').addEventListener('submit', fun
     })
     .then(data => {
         console.log('Dados enviados com sucesso:', data);
+        document.getElementById('CEPEndereco').style.border = '1px solid #ccc';
+        document.getElementById('ruaEndereco').style.border = '1px solid #ccc;';
+        document.getElementById('numeroEndereco').style.border = '1px solid #ccc';
+        document.getElementById('bairroEndereco').style.border = '1px solid #ccc';
+        document.getElementById('cidadeEndereco').style.border = '1px solid #ccc';
+        document.getElementById('estadoEndereco').style.border = '1px solid #ccc';
+        limpa_formulário_cep();
+
+        // Exibir alerta de sucesso usando SweetAlert2
+        Swal.fire({
+            title: 'Sucesso!',
+            text: 'Endereço cadastrado com sucesso!',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        });
+
         // Limpar mensagens de erro após sucesso (opcional)
         document.querySelectorAll('.error-message').forEach(function(span) {
             span.textContent = '';

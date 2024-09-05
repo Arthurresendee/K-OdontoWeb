@@ -110,40 +110,40 @@
     
         <div class="form-section" id="cadastroEndereco">
             <h2>CADASTRAR</h2>
-            <form method="post" action="." id="cadastro-endereco-form">
+            <form method="post" action="." id="cadastro-endereco-form" x>
                 <div class="form-row">
                     <div class="form-group">
                         <label for="CEPEndereco">CEP:</label>
-                        <input type="text" id="CEPEndereco" name="CEPEndereco" onblur="pesquisacep(this.value);" required />
+                        <input type="text" id="CEPEndereco" name="CEPEndereco" autocomplete="off" onblur="pesquisacep(this.value);" required />
                         <span class="error-message" id="cep-error" style="color: red;"></span>
                     </div>
                     <div class="form-group">
                         <label for="ruaEndereco">Rua:</label>
-                        <input type="text" id="ruaEndereco" name="ruaEndereco" required />
+                        <input type="text" id="ruaEndereco" name="ruaEndereco" autocomplete="off" required />
                         <span class="error-message" id="rua-error" style="color: red;"></span>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
                         <label for="numeroEndereco">Número:</label>
-                        <input type="text" id="numeroEndereco" name="numeroEndereco" required />
+                        <input type="text" id="numeroEndereco" name="numeroEndereco" autocomplete="off" required />
                         <span class="error-message" id="numero-error" style="color: red;"></span>
                     </div>
                     <div class="form-group">
                         <label for="bairroEndereco">Bairro:</label>
-                        <input type="text" id="bairroEndereco" name="bairroEndereco" required />
+                        <input type="text" id="bairroEndereco" name="bairroEndereco" autocomplete="off" required />
                         <span class="error-message" id="bairro-error" style="color: red;"></span>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
                         <label for="cidadeEndereco">Cidade:</label>
-                        <input type="text" id="cidadeEndereco" name="cidadeEndereco" required />
+                        <input type="text" id="cidadeEndereco" name="cidadeEndereco" autocomplete="off" required />
                         <span class="error-message" id="cidade-error" style="color: red;"></span>
                     </div>
                     <div class="form-group">
                         <label for="estadoEndereco">Estado:</label>
-                        <input type="text" id="estadoEndereco" name="estadoEndereco" required />
+                        <input type="text" id="estadoEndereco" name="estadoEndereco" autocomplete="off" required />
                         <span class="error-message" id="estado-error" style="color: red;"></span>
                     </div>
                 </div>
@@ -155,6 +155,7 @@
     </section>
         
     <script src="/components/cabecalhoSystem/cabecalho.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/js/sSystem/cadastro.js"></script>
 </body>
 </html>
