@@ -20,23 +20,59 @@ window.onload = showInitialForm;
 
 //#region  [Cadastro Dentista]
 ///// Aqui será buscado do banco todos os enderecos disponíveis para associar a um Dentista /////
+// document.addEventListener("DOMContentLoaded", function() {
+//     const selectElement = document.getElementById("endereco-select");
+//     let enderecosCarregados = false;
+
+//     selectElement.addEventListener("click", function() {
+//         // Verifica se os endereços já foram carregados
+//         if (enderecosCarregados) return;
+
+//         fetch("https://localhost:7237/api/Paciente")
+//             .then(response => response.json())
+//             .then(data => {
+//                 data.forEach(endereco => {
+//                     const option = document.createElement("option");
+//                     option.value = endereco.id;
+//                     option.textContent = endereco.descricao;
+//                     selectElement.appendChild(option);
+//                 });
+//                 enderecosCarregados = true;
+//             })
+//             .catch(error => {
+//                 console.error("Erro ao carregar os endereços:", error);
+//             });
+//     });
+// });
+
 document.addEventListener("DOMContentLoaded", function() {
     const selectElement = document.getElementById("endereco-select");
     let enderecosCarregados = false;
 
     selectElement.addEventListener("click", function() {
-        // Verifica se os endereços já foram carregados
         if (enderecosCarregados) return;
 
         fetch("https://localhost:7237/api/Endereco")
             .then(response => response.json())
-            .then(data => {
-                data.forEach(endereco => {
-                    const option = document.createElement("option");
-                    option.value = endereco.id;
-                    option.textContent = endereco.descricao;
-                    selectElement.appendChild(option);
-                });
+            .then(result => {
+                const { data, errors } = result;
+
+                if (errors && errors.length > 0) {
+                    console.error("Erros retornados pela API:", errors);
+                    return;
+                }
+
+                if (Array.isArray(data) && data.length > 0) {
+                    data.forEach(endereco => {
+                        const option = document.createElement("option");
+                        option.value = endereco.id;
+                        option.textContent = endereco.descricao;
+                        selectElement.appendChild(option);
+                    });
+                } else {
+                    console.error("Nenhum endereço foi retornado.");
+                }
+
                 enderecosCarregados = true;
             })
             .catch(error => {
@@ -48,13 +84,14 @@ document.addEventListener("DOMContentLoaded", function() {
 function limpa_formulario_dentista() {
     // Limpa valores do formulário de cep.
     document.getElementById('nomeDentista').value = ("");
-    document.getElementById('dataDeNascimento').value = ("");
+    document.getElementById('DataDeAniversarioDentista').value = ("");
     document.getElementById('sobreNomeDentista').value = ("");
     document.getElementById('CPFDentista').value = ("");
-    document.getElementById('emailDentista').value = ("");
-    document.getElementById('numeroDeTelefoneDentista').value = ("");
-    document.getElementById('especializacaoDentista').value = ("");
+    document.getElementById('EmailDentista').value = ("");
+    document.getElementById('NumeroDeTelefoneDentista').value = ("");
+    document.getElementById('EspecializacaoDentista').value = ("");
     document.getElementById('numeroDeRegistro').value = ("");
+    document.getElementById('especialidadeDentista').value = ("");
     document.getElementById('endereco-select').value = ("");
 }
 
@@ -80,7 +117,7 @@ document.getElementById('cadastro-dentista-form').addEventListener('submit', fun
         especializacao: especializacao,
         numeroDeRegistro: numeroDeRegistro,
         idEndereco: idEndereco
-    };
+    }
 
     fetch('https://localhost:7237/api/Dentista', {
         method: 'POST',
@@ -93,21 +130,20 @@ document.getElementById('cadastro-dentista-form').addEventListener('submit', fun
         if (!response.ok) {
             throw new Error(`Erro na requisição: ${response.status}`);
         }
+        console.log("teste ", dentista)
         return response.json();
     })
     .then(data => {
-        console.log('Dados enviados com sucesso:', data);
+        console.log('Dados enviados com sucesso:', dentista); 
         limpa_formulario_dentista();
     })
     .catch(error => {
-        console.error('Erro:', error);
+        console.error('Erro:', dentista);
     });
-});
+})
 
 
 //#endregion
-
-
 
 //#region [Cadastro Endereco]
 function limpa_formulário_cep() {
