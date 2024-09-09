@@ -26,31 +26,51 @@
 body{
   height: 100vh;
   width: 100vw;
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
-/* 
-.cabecalhoUsuario{
-  width: 100%;
-  height: 70px;
-  display: inline-block;
-}
-.user-info {
-  padding: 5px 30px;
+
+header {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  background-color: #b84848;
-  justify-content: end;
+  padding: 5px 10px;
+  background: linear-gradient(90deg, rgba(82,113,255,1) 40%,rgba(82, 125, 173, 0)60%, rgba(255,255,255,0) 100%);
+  background-color: #ffffff;
+  height: 50px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
 }
-.foto-cabecalho {
-  width: 60px; 
-  height: 60px;
-  border-radius: 50%;
-  margin: 5px 20px;
+
+header button{
+  padding: 10px 20px;
 }
-.name-username {
-  display: flex;
-  flex-direction: column;
+
+
+.logo img {
+  width: 100px;
+  height: auto;
+  margin-left: 50px;
 }
-.name-username span {
-  font-size: 1.2em;
-  color: #333;
-} */
+
+.logo {
+  flex: 1;
+}
+
+.cabecalho nav .nav-buttons button {
+  margin: 0 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #5271ff;
+  background: none;
+  border: none;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.cabecalho nav .nav-buttons button:hover {
+  text-decoration: overline;
+}

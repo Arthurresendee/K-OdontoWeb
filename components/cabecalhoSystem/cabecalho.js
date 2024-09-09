@@ -21,25 +21,22 @@ class CabecalhoSystemTag extends HTMLElement {
                     window.location.href = "/pages/pagesSystem/homeSystem.html";
                 };
 
-                this.shadowRoot.getElementById("botao-nav-dashboard").onclick = function() {
-                    window.location.href = "/pages/pagesSystem/dashboard.html";
-                };
-
                 this.shadowRoot.getElementById("botao-nav-cadastro").onclick = function() {
                     window.location.href = "/pages/pagesSystem/cadastro.html";
                 };
 
-                this.shadowRoot.getElementById("botao-nav-financeiro").onclick = function() {
-                    window.location.href = "/pages/pagesSystem/financeiro.html";
-                };
+                // this.shadowRoot.getElementById("botao-nav-dashboard").onclick = function() {
+                //     window.location.href = "/pages/pagesSystem/dashboard.html";
+                // };
 
-                this.shadowRoot.getElementById("botao-nav-ControleDeEstoque").onclick = function() {
-                    window.location.href = "/pages/pagesSystem/controleDeEstoque.html";
-                };
+                // this.shadowRoot.getElementById("botao-nav-financeiro").onclick = function() {
+                //     window.location.href = "/pages/pagesSystem/financeiro.html";
+                // };
 
-                this.shadowRoot.getElementById("botao-nav-cadastro").onclick = function() {
-                    window.location.href = "/pages/pagesSystem/cadastro.html";
-                };
+                // this.shadowRoot.getElementById("botao-nav-ControleDeEstoque").onclick = function() {
+                //     window.location.href = "/pages/pagesSystem/controleDeEstoque.html";
+                // };
+
             })
             .catch(error => console.error('Erro ao carregar o HTML:', error));
     }

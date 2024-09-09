@@ -8,41 +8,55 @@ body{
     background-color: #ffffff;
 } 
 
+
+section{
+    padding: 0 50px;
+}
+
 .card-section {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    padding: 50px 30px;
-    margin-top: 60px;
+    padding: 40px 20px;
+    margin-top: 40px;
+    text-align: center;
 }
 
 .card-container {
     display: flex;
-    justify-content: space-around;
-    padding: 20px 0;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
 .card {
     color: #ffffff;
-    background-color: #5271ff;
-    border: 1px solid #546eaf;
-    border-radius: 8px;
+    background-color: #3498db;
+    border: none;
+    border-radius: 12px;
     padding: 20px;
-    width: 250px;
-    text-align: center;
+    width: 220px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
     cursor: pointer;
-    transition: transform 0.1s, box-shadow 0.1s;
 }
 
 .card:hover {
-    transform: scale(1.04);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    background-color: #2980b9;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
 .card.active {
     background-color: #ffffff;
-    color: #5271ff;
-    transform: scale(1.1);
+    color: #3498db;
+    transform: scale(1.05);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
+
+.card h2 {
+    font-size: 1.2rem;
+    margin: 0;
+}
+
 
 .registration-section{
     padding: 40px 0;
@@ -138,7 +152,7 @@ input:focus, select:focus {
     box-shadow: 0 0 8px rgba(82, 113, 255, 0.5);
 }
 
-button {
+form button {
     margin-top: 20px;
     padding: 10px 20px;
     background-color: #5271ff;
@@ -152,4 +166,52 @@ button {
 button:hover {
     background-color: #3b5db2;
     transform: scale(1.05);
+}
+
+.container-busca-form-endereco{
+text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+th {
+    background-color: #2980b9;
+    color: white;
+}
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+tr:hover {
+    background-color: #bccbdd;
+}
+
+tr.selected {
+    background-color: #f2f2f2; /* Cor de fundo da linha selecionada */
+    color: #333; /* Cor do texto da linha selecionada */
+    font-weight: bold; /* Destacar o texto se desejar */
+}
+
+#buscar-enderecos, #buscar-por-cep {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+#buscar-enderecos:hover, #buscar-por-cep:hover {
+    background-color: #45a049;
+}
+#cep-input {
+    margin-top: 20px;
+    padding: 10px;
+    width: 200px;
 }

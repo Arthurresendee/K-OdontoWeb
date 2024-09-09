@@ -1,49 +1,60 @@
+document.getElementById("botao-nav-home").onclick = function() {
+    window.location.href = "/pages/pagesSystem/homeSystem.html";
+};
+
 function showForm(formId, cardElement) {
+    // Esconde todos os formulários
     document.querySelectorAll('.form-section').forEach(section => {
         section.style.display = 'none';
     });
+
+    // Exibe o formulário correspondente ao card clicado
     document.getElementById(formId).style.display = 'block';
 
+    // Remove a classe 'active' de todos os cards
     document.querySelectorAll('.card').forEach(card => {
         card.classList.remove('active');
     });
 
+    // Adiciona a classe 'active' ao card clicado
     cardElement.classList.add('active');
 
+    // Esconde todas as tabelas
+    document.querySelectorAll('.tabela-section').forEach(section => {
+        section.style.display = 'none';
+    });
+
+    // Exibe a tabela correspondente ao card clicado
+    if (formId === 'cadastroPaciente') {
+        document.getElementById('tabelaPacientesSection').style.display = 'block';
+    } else if (formId === 'cadastroDentista') {
+        document.getElementById('tabelaDentistasSection').style.display = 'block';
+    } else if (formId === 'cadastroEndereco') {
+        document.getElementById('tabelaEnderecosSection').style.display = 'block';
+    }
 }
+
+// Exibir o primeiro formulário ao carregar a página (Paciente)
+window.onload = function() {
+    showForm('cadastroPaciente', document.querySelector('.card'));
+};
+
+
+// Exibir o primeiro formulário ao carregar a página (Paciente)
+window.onload = function() {
+    showForm('cadastroPaciente', document.querySelector('.card'));
+}
+
+// Exibir o primeiro formulário ao carregar a página (Paciente)
+window.onload = function() {
+    showForm('cadastroPaciente', document.querySelector('.card'));
+};
 
 function showInitialForm() {
     const initialCard = document.querySelector('.card');
     showForm('cadastroPaciente', initialCard); 
 }
 window.onload = showInitialForm;
-
-//#region  [Cadastro Dentista]
-///// Aqui será buscado do banco todos os enderecos disponíveis para associar a um Dentista /////
-// document.addEventListener("DOMContentLoaded", function() {
-//     const selectElement = document.getElementById("endereco-select");
-//     let enderecosCarregados = false;
-
-//     selectElement.addEventListener("click", function() {
-//         // Verifica se os endereços já foram carregados
-//         if (enderecosCarregados) return;
-
-//         fetch("https://localhost:7237/api/Paciente")
-//             .then(response => response.json())
-//             .then(data => {
-//                 data.forEach(endereco => {
-//                     const option = document.createElement("option");
-//                     option.value = endereco.id;
-//                     option.textContent = endereco.descricao;
-//                     selectElement.appendChild(option);
-//                 });
-//                 enderecosCarregados = true;
-//             })
-//             .catch(error => {
-//                 console.error("Erro ao carregar os endereços:", error);
-//             });
-//     });
-// });
 
 document.addEventListener("DOMContentLoaded", function() {
     const selectElement = document.getElementById("endereco-select");
@@ -137,6 +148,12 @@ document.getElementById('cadastro-dentista-form').addEventListener('submit', fun
     .then(data => {
         console.log('Dados enviados com sucesso:', data); 
         limpa_formulario_dentista();
+        Swal.fire({
+            title: 'Sucesso!',
+            text: 'Dentista cadastrado com sucesso!',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        });
     })
     .catch(error => {
         console.error('Erro:', error.data.errors || error.message);
@@ -269,6 +286,7 @@ document.getElementById('cadastro-endereco-form').addEventListener('submit', fun
     })
     .catch(error => {
         if (error.data && error.data.errors) {
+            console.error('Erro:', error.data.errors || error.message);
             error.data.errors.forEach(err => {
                 // Exibir erro abaixo do campo correspondente
                 if (err.includes('CEP')) {
@@ -297,7 +315,50 @@ document.getElementById('cadastro-endereco-form').addEventListener('submit', fun
         }
     });
 });
+document.getElementById('buscar-por-cep').addEventListener('click', function() {
+    const cep = document.getElementById('cep-input').value;
+    let url = 'https://localhost:7237/api/Endereco';
 
+    // Se um CEP for fornecido, adicionar à URL
+    if (cep) {
+        url += `/cep/${cep}`;
+    }
+
+    fetch(url)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Erro ao buscar endereços.');
+        }
+        return response.json();
+    })
+    .then(data => {
+        const tabelaBody = document.querySelector('#tabela-enderecos tbody');
+        tabelaBody.innerHTML = ''; // Limpar a tabela antes de preencher
+
+        if (data && data.data && data.data.length > 0) {
+            data.data.forEach(endereco => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${endereco.cep}</td>
+                    <td>${endereco.rua}</td>
+                    <td>${endereco.numero}</td>
+                    <td>${endereco.bairro}</td>
+                    <td>${endereco.cidade}</td>
+                    <td>${endereco.estado}</td>
+                    <td>${endereco.descricao}</td>
+                `;
+                tabelaBody.appendChild(row);
+            });
+        } else {
+            tabelaBody.innerHTML = '<tr><td colspan="8">Nenhum endereço encontrado</td></tr>';
+        }
+    })
+    .catch(error => {
+        console.error('Erro ao buscar endereços:', error);
+        const tabelaBody = document.querySelector('#tabela-enderecos tbody');
+        tabelaBody.innerHTML = '<tr><td colspan="8">Erro ao buscar endereços</td></tr>';
+    });
+});
 
 //#endregion
 

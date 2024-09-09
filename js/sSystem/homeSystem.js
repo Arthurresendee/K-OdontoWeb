@@ -6,6 +6,9 @@ document.getElementById("botaoVoltarWeb").onclick = function() {
     window.location.href = "/pages/pagesWeb/home.html";
 };
 
+document.getElementById("botao-nav-cadastro").onclick = function() {
+    window.location.href = "/pages/pagesSystem/cadastro.html";
+};
 
 
 

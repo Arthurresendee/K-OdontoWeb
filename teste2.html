@@ -1,31 +1,76 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/Cadastro.css">
-    <link rel="stylesheet" href="/css/indexSystem.css">
-    <title>Cadastro</title>
+    <title>Cadastro de Paciente, Dentista e Endereço</title>
+    <style>
+        .form-section {
+            display: none; /* Esconder todas as seções de formulário inicialmente */
+        }
+        .active {
+            background-color: lightblue; /* Estilo para destacar o card selecionado */
+        }
+        .card {
+            cursor: pointer;
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid #ccc;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+        .card:hover {
+            background-color: lightgray;
+        }
+        .card-container {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        .tabela-section {
+            display: none; /* Esconder inicialmente */
+        }
+        table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+th {
+    background-color: #f2f2f2;
+}
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+tr:hover {
+    background-color: #ddd;
+}
+#buscar-enderecos, #buscar-por-cep {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+#buscar-enderecos:hover, #buscar-por-cep:hover {
+    background-color: #45a049;
+}
+#cep-input {
+    margin-top: 20px;
+    padding: 10px;
+    width: 200px;
+}
+    </style>
 </head>
 <body>
-    <!-- <app-cabecalho-system></app-cabecalho-system> -->
-    <header>
-        <div class="logo">
-            <img src="/img/logoAzul.png" alt="">
-        </div>
-        <div class="cabecalho">
-            <nav>
-                <div class="nav-buttons">
-                    <button id="botao-nav-home">Home</button>
-                    <button id="botao-nav-cadastro">Cadastro</button>
-                    <!-- <button id="botao-nav-dashboard">Dashboard</button>
-                    <button id="botao-nav-financeiro">Financeiro</button>
-                    <button id="botao-nav-ControleDeEstoque">Controle De Estoque</button> -->
-                </div>
-            </nav>
-        </div>
-    </header>
-    
+
+    <h1>Cadastro</h1>
+
     <section class="card-section">
         <div class="card-container">
             <div class="card" onclick="showForm('cadastroPaciente', this)">
@@ -39,10 +84,11 @@
             </div>
         </div>
     </section>
-    
+
     <section class="registration-section">
+        <!-- Formulário Paciente -->
         <div class="form-section" id="cadastroPaciente">
-            <h2>CADASTRAR</h2>
+            <h2>CADASTRAR PACIENTE</h2>
             <form>
                 <div class="form-row">
                     <div class="form-group">
@@ -64,9 +110,9 @@
             </form>
         </div>
 
-    
+        <!-- Formulário Dentista -->
         <div class="form-section" id="cadastroDentista">
-            <h2>CADASTRAR</h2>
+            <h2>CADASTRAR DENTISTA</h2>
             <form method="post" action="." id="cadastro-dentista-form">
                 <div class="form-row">
                     <div class="form-group">
@@ -74,7 +120,7 @@
                         <input type="text" id="nomeDentista" name="nomeDentista">
                     </div>
                     <div class="form-group">
-                        <label for="dataDeNascimento"> Data de Nascimento:</label>
+                        <label for="dataDeNascimento">Data de Nascimento:</label>
                         <input type="date" id="dataDeNascimento" name="dataDeNascimento">
                     </div>
                 </div>
@@ -88,50 +134,18 @@
                         <input type="text" id="CPFDentista" name="CPFDentista">
                     </div>
                 </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="EmailDentista">Email:</label>
-                        <input type="text" id="emailDentista" name="emailDentista">
-                    </div>
-                    <div class="form-group">
-                        <label for="NumeroDeTelefoneDentista">Celular:</label>
-                        <input type="tel" id="numeroDeTelefoneDentista" name="numeroDeTelefoneDentista">
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="EspecializacaoDentista">Especialização:</label>
-                        <input type="text" id="especializacaoDentista" name="especializacaoDentista">
-                    </div>
-                    <div class="form-group">
-                        <label for="numeroDeRegistro">CRO:</label>
-                        <input type="text" id="numeroDeRegistro" name="numeroDeRegistro">
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <!-- Esse campo de Select Endereco é o mesmo que escolher o Id do Endereco -->
-                        <label for="endereco-select">Endereço:</label>
-                        <select id="endereco-select" name="endereco">
-                            <option value="">Selecione um Endereço</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        
-                        
-                    </div>
-                </div>
                 <button type="submit">Cadastrar Dentista</button>
             </form>
         </div>
-    
+
+        <!-- Formulário Endereço -->
         <div class="form-section" id="cadastroEndereco">
-            <h2>CADASTRAR</h2>
-            <form method="post" action="." id="cadastro-endereco-form" x>
+            <h2>CADASTRAR ENDEREÇO</h2>
+            <form method="post" action="." id="cadastro-endereco-form">
                 <div class="form-row">
                     <div class="form-group">
                         <label for="CEPEndereco">CEP:</label>
-                        <input type="text" id="CEPEndereco" name="CEPEndereco" autocomplete="off" onblur="pesquisacep(this.value);" required />
+                        <input type="text" id="CEPEndereco" name="CEPEndereco" autocomplete="off" required />
                         <span class="error-message" id="cep-error" style="color: red;"></span>
                     </div>
                     <div class="form-group">
@@ -140,38 +154,15 @@
                         <span class="error-message" id="rua-error" style="color: red;"></span>
                     </div>
                 </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="numeroEndereco">Número:</label>
-                        <input type="text" id="numeroEndereco" name="numeroEndereco" autocomplete="off" required />
-                        <span class="error-message" id="numero-error" style="color: red;"></span>
-                    </div>
-                    <div class="form-group">
-                        <label for="bairroEndereco">Bairro:</label>
-                        <input type="text" id="bairroEndereco" name="bairroEndereco" autocomplete="off" required />
-                        <span class="error-message" id="bairro-error" style="color: red;"></span>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="cidadeEndereco">Cidade:</label>
-                        <input type="text" id="cidadeEndereco" name="cidadeEndereco" autocomplete="off" required />
-                        <span class="error-message" id="cidade-error" style="color: red;"></span>
-                    </div>
-                    <div class="form-group">
-                        <label for="estadoEndereco">Estado:</label>
-                        <input type="text" id="estadoEndereco" name="estadoEndereco" autocomplete="off" required />
-                        <span class="error-message" id="estado-error" style="color: red;"></span>
-                    </div>
-                </div>
                 <button type="submit" id="button-cadastrarEndereco">Cadastrar Endereço</button>
             </form>
         </div>
     </section>
 
+    <!-- Tabela de Pacientes -->
     <section class="tabela-section" id="tabelaPacientesSection">
         <h2>Lista de Pacientes</h2>
-        <table>
+        <table id="tabela-pacientes">
             <thead>
                 <tr>
                     <th>Nome</th>
@@ -185,6 +176,7 @@
         </table>
     </section>
 
+    <!-- Tabela de Dentistas -->
     <section class="tabela-section" id="tabelaDentistasSection">
         <h2>Lista de Dentistas</h2>
         <table id="tabela-dentistas">
@@ -192,14 +184,8 @@
                 <tr>
                     <th>Nome</th>
                     <th>Sobrenome</th>
-                    <th>data De Nascimento</th>
                     <th>CPF</th>
-                    <th>Email</th>
-                    <th>Celular</th>
-                    <th>Especialização</th>
-                    <th>Especialização</th>
                     <th>CRO</th>
-                    <th>Endereco</th>
                 </tr>
             </thead>
             <tbody>
@@ -208,11 +194,10 @@
         </table>
     </section>
 
+    <!-- Tabela de Endereços -->
     <section class="tabela-section" id="tabelaEnderecosSection">
-        <div class="container-busca-form-endereco" style="text-align: center;">
-            <input type="text" id="cep-input" placeholder="Digite o CEP" />
-            <button id="buscar-por-cep">Pesquisar Endereços</button>
-        </div>
+        <input type="text" id="cep-input" placeholder="Digite o CEP (Opcional)" />
+        <button id="buscar-por-cep">Pesquisar Endereços</button>
 
         <table id="tabela-enderecos">
             <thead>
@@ -231,10 +216,45 @@
             </tbody>
         </table>
     </section>
-    
-        
-    <!-- <script src="/components/cabecalhoSystem/cabecalho.js"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="/js/sSystem/cadastro.js"></script>
+
+    <script>
+        function showForm(formId, cardElement) {
+            // Esconde todos os formulários
+            document.querySelectorAll('.form-section').forEach(section => {
+                section.style.display = 'none';
+            });
+
+            // Exibe o formulário correspondente ao card clicado
+            document.getElementById(formId).style.display = 'block';
+
+            // Remove a classe 'active' de todos os cards
+            document.querySelectorAll('.card').forEach(card => {
+                card.classList.remove('active');
+            });
+
+            // Adiciona a classe 'active' ao card clicado
+            cardElement.classList.add('active');
+
+            // Esconde todas as tabelas
+            document.querySelectorAll('.tabela-section').forEach(section => {
+                section.style.display = 'none';
+            });
+
+            // Exibe a tabela correspondente ao card clicado
+            if (formId === 'cadastroPaciente') {
+                document.getElementById('tabelaPacientesSection').style.display = 'block';
+            } else if (formId === 'cadastroDentista') {
+                document.getElementById('tabelaDentistasSection').style.display = 'block';
+            } else if (formId === 'cadastroEndereco') {
+                document.getElementById('tabelaEnderecosSection').style.display = 'block';
+            }
+        }
+
+        // Exibir o primeiro formulário ao carregar a página (Paciente)
+        window.onload = function() {
+            showForm('cadastroPaciente', document.querySelector('.card'));
+        };
+    </script>
+
 </body>
 </html>
