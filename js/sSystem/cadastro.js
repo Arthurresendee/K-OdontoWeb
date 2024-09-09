@@ -91,6 +91,18 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
+function resetarOsEstilosDosInputsDeDentista() {
+    document.getElementById('nomeDentista').style.border = '1px solid #ccc';
+    document.getElementById('dataDeNascimento').style.border = '1px solid #ccc';
+    document.getElementById('sobreNomeDentista').style.border = '1px solid #ccc';
+    document.getElementById('CPFDentista').style.border = '1px solid #ccc';
+    document.getElementById('emailDentista').style.border = '1px solid #ccc';
+    document.getElementById('numeroDeTelefoneDentista').style.border = '1px solid #ccc';
+    document.getElementById('especializacaoDentista').style.border = '1px solid #ccc';
+    document.getElementById('numeroDeRegistro').style.border = '1px solid #ccc';
+    document.getElementById('endereco-select').style.border = '1px solid #ccc';
+}
+
 function limpa_formulario_dentista() {
     // Limpa valores do formulário de cep.
     document.getElementById('nomeDentista').value = ("");
@@ -106,6 +118,12 @@ function limpa_formulario_dentista() {
 
 document.getElementById('cadastro-dentista-form').addEventListener('submit', function(event) {
     event.preventDefault();
+    
+    // Limpar mensagens de erro anteriores
+    document.querySelectorAll('.error-message').forEach(function(span) {
+        span.textContent = '';
+    });
+
     const nome = document.getElementById('nomeDentista').value;
     const dataDeNascimento = document.getElementById('dataDeNascimento').value;
     const sobreNome = document.getElementById('sobreNomeDentista').value;
@@ -126,7 +144,7 @@ document.getElementById('cadastro-dentista-form').addEventListener('submit', fun
         especializacao: especializacao,
         numeroDeRegistro: numeroDeRegistro,
         idEndereco: idEndereco
-    }
+    };
 
     fetch('https://localhost:7237/api/Dentista', {
         method: 'POST',
@@ -138,31 +156,94 @@ document.getElementById('cadastro-dentista-form').addEventListener('submit', fun
     .then(response => {
         return response.json().then(data => {
             if (!response.ok) {
-                const error = new Error(`Erro na requisição: ${response.status}`);
+                const error = new Error('Erro na requisição');
                 error.data = data;
                 throw error;
             }
             return data;
-        })
+        });
     })
     .then(data => {
-        console.log('Dados enviados com sucesso:', data); 
-        limpa_formulario_dentista();
+        console.log('Dados enviados com sucesso:', data);
+        
+        // Resetar o estilo dos campos após sucesso
+        resetarOsEstilosDosInputsDeDentista();
+        limpa_formulario_dentista(); // Limpar formulário após sucesso
+
+        // Exibir alerta de sucesso usando SweetAlert2
         Swal.fire({
             title: 'Sucesso!',
             text: 'Dentista cadastrado com sucesso!',
             icon: 'success',
             confirmButtonText: 'OK'
         });
+
     })
     .catch(error => {
-        console.error('Erro:', error.data.errors || error.message);
+        resetarOsEstilosDosInputsDeDentista();
+
+
+        if (error.data && error.data.errors) {
+            console.error('Erro:', error.data.errors || error.message);
+            error.data.errors.forEach(err => {
+                // Exibir erro abaixo do campo correspondente
+                if (err.includes('Nome')) {
+                    document.getElementById('nomeDentista').style.borderColor = 'red';
+                    document.getElementById('nomeDentista-error').textContent = err;
+                } else if (err.includes('Data de Nascimento')) {
+                    document.getElementById('dataDeNascimento').style.borderColor = 'red';
+                    document.getElementById('dataDeNascimento-error').textContent = err;
+                } else if (err.includes('Sobrenome')) {
+                    document.getElementById('sobreNomeDentista').style.borderColor = 'red';
+                    document.getElementById('sobreNomeDentista-error').textContent = err;
+                } else if (err.includes('CPF')) {
+                    document.getElementById('CPFDentista').style.borderColor = 'red';
+                    document.getElementById('CPFDentista-error').textContent = err;
+                } else if (err.includes('Email')) {
+                    document.getElementById('emailDentista').style.borderColor = 'red';
+                    document.getElementById('emailDentista-error').textContent = err;
+                } else if (err.includes('Celular')) {
+                    document.getElementById('numeroDeTelefoneDentista').style.borderColor = 'red';
+                    document.getElementById('numeroDeTelefoneDentista-error').textContent = err;
+                } else if (err.includes('Especialização')) {
+                    document.getElementById('especializacaoDentista').style.borderColor = 'red';
+                    document.getElementById('especializacaoDentista-error').textContent = err;
+                } else if (err.includes('Número de Registro')) {
+                    document.getElementById('numeroDeRegistro').style.borderColor = 'red';
+                    document.getElementById('numeroDeRegistroDentista-error').textContent = err;
+                } else if (err.includes('Endereço')) {
+                    document.getElementById('endereco-select').style.borderColor = 'red';
+                    document.getElementById('endereco-select-error').textContent = err;
+                }
+            });
+        } else {
+            console.error('Erro:', error.message);
+        }
     });
-})
+});
+
+
+function limpa_formulario_dentista() {
+    document.getElementById('cadastro-dentista-form').reset();
+    document.querySelectorAll('.error-message').forEach(function(span) {
+        span.textContent = '';
+    });
+}
+
 
 //#endregion
 
 //#region [Cadastro Endereco]
+
+function resetarOsEstilosDosInputsDeEndereco() {
+    document.getElementById('CEPEndereco').style.border = '1px solid #ccc';
+    document.getElementById('ruaEndereco').style.border = '1px solid #ccc;';
+    document.getElementById('numeroEndereco').style.border = '1px solid #ccc';
+    document.getElementById('bairroEndereco').style.border = '1px solid #ccc';
+    document.getElementById('cidadeEndereco').style.border = '1px solid #ccc';
+    document.getElementById('estadoEndereco').style.border = '1px solid #ccc';
+}
+
 function limpa_formulário_cep() {
     // Limpa valores do formulário de cep.
     document.getElementById('CEPEndereco').value = ("");
@@ -263,12 +344,7 @@ document.getElementById('cadastro-endereco-form').addEventListener('submit', fun
     })
     .then(data => {
         console.log('Dados enviados com sucesso:', data);
-        document.getElementById('CEPEndereco').style.border = '1px solid #ccc';
-        document.getElementById('ruaEndereco').style.border = '1px solid #ccc;';
-        document.getElementById('numeroEndereco').style.border = '1px solid #ccc';
-        document.getElementById('bairroEndereco').style.border = '1px solid #ccc';
-        document.getElementById('cidadeEndereco').style.border = '1px solid #ccc';
-        document.getElementById('estadoEndereco').style.border = '1px solid #ccc';
+        resetarOsEstilosDosInputsDeEndereco();
         limpa_formulário_cep();
 
         // Exibir alerta de sucesso usando SweetAlert2
@@ -285,6 +361,7 @@ document.getElementById('cadastro-endereco-form').addEventListener('submit', fun
         });
     })
     .catch(error => {
+        resetarOsEstilosDosInputsDeDentista();
         if (error.data && error.data.errors) {
             console.error('Erro:', error.data.errors || error.message);
             error.data.errors.forEach(err => {

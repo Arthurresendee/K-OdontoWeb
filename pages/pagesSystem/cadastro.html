@@ -72,57 +72,63 @@
                     <div class="form-group">
                         <label for="nomeDentista">Nome:</label>
                         <input type="text" id="nomeDentista" name="nomeDentista">
+                        <span class="error-message" id="nomeDentista-error" style="color: red;"></span>
                     </div>
                     <div class="form-group">
-                        <label for="dataDeNascimento"> Data de Nascimento:</label>
-                        <input type="date" id="dataDeNascimento" name="dataDeNascimento">
+                        <label for="dataDeNascimento">Data de Nascimento:</label>
+                        <input type="date" id="dataDeNascimento" name="dataDeNascimento" required>
+                        <span class="error-message" id="dataDeNascimento-error" style="color: red;"></span>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
                         <label for="sobreNomeDentista">Sobrenome:</label>
                         <input type="text" id="sobreNomeDentista" name="sobreNomeDentista">
+                        <span class="error-message" id="sobreNomeDentista-error" style="color: red;"></span>
                     </div>
                     <div class="form-group">
                         <label for="CPFDentista">CPF:</label>
-                        <input type="text" id="CPFDentista" name="CPFDentista">
+                        <input type="text" id="CPFDentista" name="CPFDentista" required>
+                        <span class="error-message" id="CPFDentista-error" style="color: red;"></span>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="EmailDentista">Email:</label>
+                        <label for="emailDentista">Email:</label>
                         <input type="text" id="emailDentista" name="emailDentista">
+                        <span class="error-message" id="emailDentista-error" style="color: red;"></span>
                     </div>
                     <div class="form-group">
-                        <label for="NumeroDeTelefoneDentista">Celular:</label>
+                        <label for="numeroDeTelefoneDentista">Celular:</label>
                         <input type="tel" id="numeroDeTelefoneDentista" name="numeroDeTelefoneDentista">
+                        <span class="error-message" id="numeroDeTelefoneDentista-error" style="color: red;"></span>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="EspecializacaoDentista">Especialização:</label>
+                        <label for="especializacaoDentista">Especialização:</label>
                         <input type="text" id="especializacaoDentista" name="especializacaoDentista">
+                        <span class="error-message" id="especializacaoDentista-error" style="color: red;"></span>
                     </div>
                     <div class="form-group">
                         <label for="numeroDeRegistro">CRO:</label>
                         <input type="text" id="numeroDeRegistro" name="numeroDeRegistro">
+                        <span class="error-message" id="numeroDeRegistroDentista-error" style="color: red;"></span>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
                         <!-- Esse campo de Select Endereco é o mesmo que escolher o Id do Endereco -->
                         <label for="endereco-select">Endereço:</label>
-                        <select id="endereco-select" name="endereco">
+                        <select id="endereco-select" name="endereco" required>
                             <option value="">Selecione um Endereço</option>
                         </select>
-                    </div>
-                    <div class="form-group">
-                        
-                        
+                        <span class="error-message" id="endereco-select-error" style="color: red;"></span>
                     </div>
                 </div>
                 <button type="submit">Cadastrar Dentista</button>
             </form>
+            
         </div>
     
         <div class="form-section" id="cadastroEndereco">
