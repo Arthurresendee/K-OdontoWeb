@@ -46,8 +46,23 @@
             <form>
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="nomePaciente">Nome:</label>
-                        <input type="text" id="nomePaciente" name="nomePaciente" required>
+                        <label for="nomeCompletoPaciente">Nome completo</label>
+                        <input type="text" id="nomeCompletoPaciente" name="nomeCompletoPaciente" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="sexo-selectPaciente">Sexo</label>
+                        <select id="sexo-selectPaciente" name="sexo-selectPaciente" required>
+                            <option value="">Selecione seu sexo</option>
+                            <option value="masculino">Masculino</option>
+                            <option value="feminino">Feminino</option>
+                            <option value="feminino">Outro</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="dataNascimentoPaciente">Data de Nascimento:</label>
+                        <input type="date" id="dataNascimentoPaciente" name="dataNascimentoPaciente" required>
                     </div>
                     <div class="form-group">
                         <label for="cpfPaciente">CPF:</label>
@@ -56,10 +71,48 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="dataNascimentoPaciente">Data de Nascimento:</label>
-                        <input type="date" id="dataNascimentoPaciente" name="dataNascimentoPaciente" required>
+                        <label for="rgPaciente">RG</label>
+                        <input type="text" id="rgPaciente" name="rgPaciente" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="numeroDeTelefonePaciente">Número de Telefone</label>
+                        <input type="text" id="numeroDeTelefonePaciente" name="numeroDeTelefonePaciente" required>
                     </div>
                 </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="whatsappPaciente">WhatsApp</label>
+                        <input type="text" id="whatsappPaciente" name="whatsappPaciente" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefonePaciente">Telefone</label>
+                        <input type="text" id="telefonePaciente" name="telefonePaciente" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        
+                        <label for="emailPaciente">Email</label>
+                        <input type="email" id="emailPaciente" name="emailPaciente" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="dentista-selectPaciente">Dentista Responsável</label>
+                        <select id="dentista-selectPaciente" name="dentista-selectPaciente" required>
+                            <option value="">Selecione o dentista</option>
+                            <!-- //////////////// -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="endereco-selectPaciente">Endereço</label>
+                        <select id="endereco-selectPaciente" name="endereco-selectPaciente" required>
+                            <option value="">Selecione o endereço</option>
+                            <!-- //////////////// -->
+                        </select>
+                    </div>
+                </div>
+                
                 <button type="submit">Cadastrar Paciente</button>
             </form>
         </div>
@@ -128,7 +181,6 @@
                 </div>
                 <button type="submit">Cadastrar Dentista</button>
             </form>
-            
         </div>
     
         <div class="form-section" id="cadastroEndereco">
@@ -172,6 +224,7 @@
                 </div>
                 <button type="submit" id="button-cadastrarEndereco">Cadastrar Endereço</button>
             </form>
+            
         </div>
     </section>
 

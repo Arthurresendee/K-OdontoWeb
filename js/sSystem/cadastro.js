@@ -234,7 +234,6 @@ function limpa_formulario_dentista() {
 //#endregion
 
 //#region [Cadastro Endereco]
-
 function resetarOsEstilosDosInputsDeEndereco() {
     document.getElementById('CEPEndereco').style.border = '1px solid #ccc';
     document.getElementById('ruaEndereco').style.border = '1px solid #ccc;';
