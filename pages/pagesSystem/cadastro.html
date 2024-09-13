@@ -43,57 +43,65 @@
     <section class="registration-section">
         <div class="form-section" id="cadastroPaciente">
             <h2>CADASTRAR</h2>
-            <form>
+            <form  method="post" action="." id="cadastro-paciente-form">
                 <div class="form-row">
                     <div class="form-group">
                         <label for="nomeCompletoPaciente">Nome completo</label>
                         <input type="text" id="nomeCompletoPaciente" name="nomeCompletoPaciente" required>
+                        <span class="error-message" id="nomeCompletoPaciente-error" style="color: red;"></span>
                     </div>
                     <div class="form-group">
                         <label for="sexo-selectPaciente">Sexo</label>
                         <select id="sexo-selectPaciente" name="sexo-selectPaciente" required>
                             <option value="">Selecione seu sexo</option>
-                            <option value="masculino">Masculino</option>
-                            <option value="feminino">Feminino</option>
-                            <option value="feminino">Outro</option>
+                            <option value="1">Masculino</option>
+                            <option value="2">Feminino</option>
+                            <option value="3">Outro</option>
                         </select>
+                        <span class="error-message" id="sexo-selectPaciente-error" style="color: red;"></span>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
                         <label for="dataNascimentoPaciente">Data de Nascimento:</label>
-                        <input type="date" id="dataNascimentoPaciente" name="dataNascimentoPaciente" required>
+                        <input type="date" id="dataNascimentoPaciente" name="dataNascimentoPaciente" >
+                        <span class="error-message" id="dataNascimentoPaciente-error" style="color: red;"></span>
                     </div>
                     <div class="form-group">
                         <label for="cpfPaciente">CPF:</label>
-                        <input type="text" id="cpfPaciente" name="cpfPaciente" required>
+                        <input type="text" id="cpfPaciente" name="cpfPaciente" >
+                        <span class="error-message" id="cpfPaciente-error" style="color: red;"></span>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
                         <label for="rgPaciente">RG</label>
-                        <input type="text" id="rgPaciente" name="rgPaciente" required>
+                        <input type="text" id="rgPaciente" name="rgPaciente" >
+                        <span class="error-message" id="rgPaciente-error" style="color: red;"></span>
                     </div>
                     <div class="form-group">
                         <label for="numeroDeTelefonePaciente">Número de Telefone</label>
-                        <input type="text" id="numeroDeTelefonePaciente" name="numeroDeTelefonePaciente" required>
+                        <input type="text" id="numeroDeTelefonePaciente" name="numeroDeTelefonePaciente" >
+                        <span class="error-message" id="numeroDeTelefonePaciente-error" style="color: red;"></span>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
                         <label for="whatsappPaciente">WhatsApp</label>
-                        <input type="text" id="whatsappPaciente" name="whatsappPaciente" required>
+                        <input type="text" id="whatsappPaciente" name="whatsappPaciente" >
+                        <span class="error-message" id="whatsappPaciente-error" style="color: red;"></span>
                     </div>
                     <div class="form-group">
                         <label for="telefonePaciente">Telefone</label>
-                        <input type="text" id="telefonePaciente" name="telefonePaciente" required>
+                        <input type="text" id="telefonePaciente" name="telefonePaciente" >
+                        <span class="error-message" id="telefonePaciente-error" style="color: red;"></span>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        
                         <label for="emailPaciente">Email</label>
-                        <input type="email" id="emailPaciente" name="emailPaciente" required>
+                        <input type="email" id="emailPaciente" name="emailPaciente" >
+                        <span class="error-message" id="emailPaciente-error" style="color: red;"></span>
                     </div>
                 </div>
                 <div class="form-row">
@@ -103,6 +111,7 @@
                             <option value="">Selecione o dentista</option>
                             <!-- //////////////// -->
                         </select>
+                        <span class="error-message" id="dentista-selectPaciente-error" style="color: red;"></span>
                     </div>
                     <div class="form-group">
                         <label for="endereco-selectPaciente">Endereço</label>
@@ -110,11 +119,11 @@
                             <option value="">Selecione o endereço</option>
                             <!-- //////////////// -->
                         </select>
+                        <span class="error-message" id="endereco-selectPaciente-error" style="color: red;"></span>
                     </div>
                 </div>
-                
                 <button type="submit">Cadastrar Paciente</button>
-            </form>
+            </form>            
         </div>
 
     

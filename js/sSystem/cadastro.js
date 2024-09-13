@@ -91,6 +91,195 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
+document.addEventListener("DOMContentLoaded", function() {
+    const selectElement = document.getElementById("endereco-selectPaciente");
+    let enderecosCarregados = false;
+
+    selectElement.addEventListener("click", function() {
+        if (enderecosCarregados) return;
+
+        fetch("https://localhost:7237/api/Endereco")
+            .then(response => response.json())
+            .then(result => {
+                const { data, errors } = result;
+
+                if (errors && errors.length > 0) {
+                    console.error("Erros retornados pela API:", errors);
+                    return;
+                }
+
+                if (Array.isArray(data) && data.length > 0) {
+                    data.forEach(endereco => {
+                        const option = document.createElement("option");
+                        option.value = endereco.id;
+                        option.textContent = endereco.descricao;
+                        selectElement.appendChild(option);
+                    });
+                } else {
+                    console.error("Nenhum endereço foi retornado.");
+                }
+                enderecosCarregados = true;
+            })
+            .catch(error => {
+                console.error("Erro ao carregar os endereços:", error);
+            });
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    const selectElement = document.getElementById("dentista-selectPaciente");
+    let dentistasCarregados = false; // Esta variável vai impedir o carregamento repetido
+
+    selectElement.addEventListener("click", function() {
+        if (dentistasCarregados) return; // Verifica se os dentistas já foram carregados
+        fetch("https://localhost:7237/api/Dentista")
+            .then(response => response.json())
+            .then(result => {
+                const { data, errors } = result;
+
+                if (errors && errors.length > 0) {
+                    console.error("Erros retornados pela API:", errors);
+                    return;
+                }
+
+                if (Array.isArray(data) && data.length > 0) {
+                    data.forEach(dentista => {
+                        const option = document.createElement("option");
+                        option.value = dentista.id;
+                        option.textContent = dentista.nome;
+                        selectElement.appendChild(option);
+                    });
+                } else {
+                    console.error("Nenhum dentista foi retornado.");
+                }
+                dentistasCarregados = true; // Atualiza a variável corretamente
+            })
+            .catch(error => {
+                console.error("Erro ao carregar os dentistas:", error);
+            });
+    });
+});
+
+document.getElementById('cadastro-paciente-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    // Limpar mensagens de erro anteriores
+    document.querySelectorAll('.error-message').forEach(function(span) {
+        span.textContent = '';
+    });
+
+    // Coletar os valores do formulário
+    const nomeCompleto = document.getElementById('nomeCompletoPaciente').value;
+    const sexo = parseInt(document.getElementById('sexo-selectPaciente').value, 10); // Converter para número
+    const dataNascimento = document.getElementById('dataNascimentoPaciente').value;
+    const cpf = document.getElementById('cpfPaciente').value;
+    const rg = document.getElementById('rgPaciente').value;
+    const numeroDeTelefone = document.getElementById('numeroDeTelefonePaciente').value;
+    const whatsapp = document.getElementById('whatsappPaciente').value;
+    const telefone = document.getElementById('telefonePaciente').value;
+    const email = document.getElementById('emailPaciente').value;
+    const dentistaResponsavel = document.getElementById('dentista-selectPaciente').value;
+    const endereco = document.getElementById('endereco-selectPaciente').value;
+
+    // Verificar se o dentista foi selecionado
+    if (!dentistaResponsavel) {
+        document.getElementById('dentista-error').textContent = 'Por favor, selecione um dentista.';
+        return;
+    }
+
+    // Objeto Paciente a ser enviado para a API
+    const paciente = {
+        nome: nomeCompleto,
+        sexo: sexo, // Passar valor numérico
+        dataDeNascimento: dataNascimento,
+        cpf: cpf,
+        rg: rg,
+        numeroDeTelefone: numeroDeTelefone,
+        whatsapp: whatsapp,
+        telefone: telefone,
+        email: email,
+        idDentista: dentistaResponsavel,
+        idEndereco: endereco
+    };
+
+    // Fazer a requisição POST para a API
+    fetch('https://localhost:7237/api/Paciente', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(paciente)
+    })
+    .then(response => {
+        return response.json().then(data => {
+            if (!response.ok) {
+                const error = new Error('Erro na requisição');
+                error.data = data;
+                throw error;
+            }
+            return data;
+        });
+    })
+    .then(data => {
+        console.log('Paciente cadastrado com sucesso:', data);
+
+        // Resetar o formulário e mensagens de erro após o sucesso
+        document.getElementById('cadastro-paciente-form').reset();
+        document.querySelectorAll('.error-message').forEach(function(span) {
+            span.textContent = '';
+        });
+
+        // Exibir alerta de sucesso usando SweetAlert2
+        Swal.fire({
+            title: 'Sucesso!',
+            text: 'Paciente cadastrado com sucesso!',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        });
+    })
+    .catch(error => {
+        console.error('Erro:', error.data?.errors || error.message);
+        if (error.data && error.data.errors) {
+            error.data.errors.forEach(err => {
+                // Exibir erro abaixo do campo correspondente
+                if (err.includes('Nome completo')) {
+                    document.getElementById('nomeCompletoPaciente').style.borderColor = 'red';
+                    document.getElementById('nomeCompletoPaciente').focus();
+                    document.getElementById('nome-error').textContent = err;
+                } else if (err.includes('Sexo')) {
+                    document.getElementById('sexo-selectPaciente').style.borderColor = 'red';
+                    document.getElementById('sexo-error').textContent = err;
+                } else if (err.includes('Data de Nascimento')) {
+                    document.getElementById('dataNascimentoPaciente').style.borderColor = 'red';
+                    document.getElementById('dataNascimento-error').textContent = err;
+                } else if (err.includes('CPF')) {
+                    document.getElementById('cpfPaciente').style.borderColor = 'red';
+                    document.getElementById('cpf-error').textContent = err;
+                } else if (err.includes('RG')) {
+                    document.getElementById('rgPaciente').style.borderColor = 'red';
+                    document.getElementById('rg-error').textContent = err;
+                } else if (err.includes('Telefone')) {
+                    document.getElementById('numeroDeTelefonePaciente').style.borderColor = 'red';
+                    document.getElementById('numero-error').textContent = err;
+                } else if (err.includes('WhatsApp')) {
+                    document.getElementById('whatsappPaciente').style.borderColor = 'red';
+                    document.getElementById('whatsapp-error').textContent = err;
+                } else if (err.includes('Email')) {
+                    document.getElementById('emailPaciente').style.borderColor = 'red';
+                    document.getElementById('email-error').textContent = err;
+                } else if (err.includes('Dentista')) {
+                    document.getElementById('dentista-selectPaciente').style.borderColor = 'red';
+                    document.getElementById('dentista-error').textContent = err;
+                } else if (err.includes('Endereço')) {
+                    document.getElementById('endereco-selectPaciente').style.borderColor = 'red';
+                    document.getElementById('endereco-error').textContent = err;
+                }
+            });
+        }
+    });
+});
+
+
 function resetarOsEstilosDosInputsDeDentista() {
     document.getElementById('nomeDentista').style.border = '1px solid #ccc';
     document.getElementById('dataDeNascimento').style.border = '1px solid #ccc';
