@@ -9,6 +9,18 @@ body{
 } 
 
 
+.form-toggle {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+.hidden {
+    display: none;
+}
+
 section{
     padding: 0 50px;
 }
@@ -199,6 +211,8 @@ tr.selected {
     font-weight: bold; /* Destacar o texto se desejar */
 }
 
+
+
 #buscar-enderecos, #buscar-por-cep {
     margin-top: 20px;
     padding: 10px 20px;
@@ -211,6 +225,42 @@ tr.selected {
     background-color: #45a049;
 }
 #cep-input {
+    margin-top: 20px;
+    padding: 10px;
+    width: 200px;
+}
+
+
+#buscar-por-nomeDentista {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+#buscar-por:hover {
+    background-color: #45a049;
+}
+
+#nomeDentista-input {
+    margin-top: 20px;
+    padding: 10px;
+    width: 200px;
+}
+
+#buscar-por-nomePacientes {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+#buscar-por-nomePaciente:hover {
+    background-color: #45a049;
+}
+#nomePaciente-input {
     margin-top: 20px;
     padding: 10px;
     width: 200px;

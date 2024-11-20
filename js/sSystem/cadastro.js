@@ -370,8 +370,6 @@ document.getElementById('cadastro-dentista-form').addEventListener('submit', fun
     })
     .catch(error => {
         resetarOsEstilosDosInputsDeDentista();
-
-
         if (error.data && error.data.errors) {
             console.error('Erro:', error.data.errors || error.message);
             error.data.errors.forEach(err => {
